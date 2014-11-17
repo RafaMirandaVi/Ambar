@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menuOptions"
+    android:layout_width="280sp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="#ffffff"
+    android:choiceMode="singleChoice"
+    android:orientation="vertical">
+
+
+    <ListView
+        android:id="@+id/menuOptionsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/white"
+        android:dividerHeight="0dp"
+        android:overScrollMode="never" />
+
+
+
+</LinearLayout>
+
+
+
+
+

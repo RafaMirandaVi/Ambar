@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_dark">#12A6AD</color>
+    <color name="primary">#00AFC2</color>
+    <color name="accent">#F6C27c</color>
+    <color name="temperature">#0C758E</color>
+    <color name="humidity">#9C0000</color>
+    <color name="textColor">#2D373A</color>
+    <color name="white">#FFFFFF</color>
+
+</resources>
