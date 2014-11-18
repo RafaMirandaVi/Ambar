@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    >
+
+    <EditText
+        android:id="@+id/LoginPersonText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="15"
+        android:layout_marginTop="40dp"
+        android:shadowColor="#000"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:id="@+id/LoginPassText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="15"
+        android:textColorHighlight="#000"
+        android:textColor="#000"
+        android:layout_marginTop="40dp"
+         />
+
+    <Button
+        android:id="@+id/LoginButtonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        />
+</LinearLayout>

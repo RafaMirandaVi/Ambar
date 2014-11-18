@@ -3,22 +3,29 @@ package com.example.jhordan.Ambar;
 import android.app.Activity;
 
 import android.app.Fragment;
+import android.content.pm.PackageInstaller;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MyActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
+    SessionManagement sessionM;
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
@@ -28,8 +35,13 @@ public class MyActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sessionM = new SessionManagement(getApplicationContext());
+        sessionM.checkLogin(); //Solo hace el redireccionamiento
+        Toast.makeText(getApplicationContext(), "User Login Status: " + sessionM.isLoggedIn(), Toast.LENGTH_LONG).show();
+
         setContentView(R.layout.activity_my);
 
+        Log.d("MYACTIVITY","onCreate");
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -47,10 +59,13 @@ public class MyActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+        Log.d("MYACTIVITY","onNavigationDrawerItemSelected");
         // update the main content by replacing fragments
         switch (position) {
             case 0:
@@ -71,16 +86,20 @@ public class MyActivity extends ActionBarActivity
                 getSupportFragmentManager().beginTransaction().replace(R.id.container,Fragment_my.newInstance(position)).commit();
                 break;
 
+            case 3:
+                Log.d("NAV_DRAWER","log out");
+                sessionM.logoutUser();
             default:
 
                 break;
          }
 
-
         onSectionAttached(position);
         }
 
     public void onSectionAttached(int number) {
+        Log.d("MYACTIVITY","onSectionAttached");
+
         switch (number) {
             case 0:
                 mTitle = getString(R.string.title_section1);
@@ -92,8 +111,6 @@ public class MyActivity extends ActionBarActivity
                 mTitle = getString(R.string.title_section3);
                 break;
         }
-
-
 
         if (toolbar!=null)
         {

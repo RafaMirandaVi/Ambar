@@ -70,6 +70,7 @@ public class NavigationDrawerFragment extends Fragment {
         listViewItems.add(new ItemContentSection(0, getResources().getColor(R.color.white),getResources().getColor(R.color.accent), R.string.title_section1));
         listViewItems.add(new ItemContentSection(0, getResources().getColor(R.color.accent), R.string.title_section2));
         listViewItems.add(new ItemContentSection(0, getResources().getColor(R.color.accent), R.string.title_section3));
+        listViewItems.add(new ItemContentSection(0, getResources().getColor(R.color.accent), R.string.title_section4));
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
