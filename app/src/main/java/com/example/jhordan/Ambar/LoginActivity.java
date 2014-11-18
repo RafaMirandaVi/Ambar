@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class LoginActivity extends Activity {
@@ -34,12 +35,31 @@ public class LoginActivity extends Activity {
                 nameTxt = name.getText().toString();
                 passTxt = pass.getText().toString();
 
-                sessionM.createLoginSession(nameTxt,passTxt);
-                Log.d("Login","Session created");
+                if(nameTxt.trim().length() > 0 && passTxt.trim().length() > 0){
+                    //nameTxt.equals("test") && passTxt.equals("test")
+                    if(true){
 
-                Intent intent = new Intent(getApplicationContext(),MyActivity.class);
-                startActivity(intent);
-                finish();
+                        // Creating user login session
+                        // For testing i am stroing name, email as follow
+                        // Use user real data
+                        sessionM.createLoginSession(nameTxt,passTxt);
+                        Log.d("Login","Session created");
+
+                        Intent intent = new Intent(getApplicationContext(),MyActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }else{
+                        // username / password doesn't match
+                        Toast.makeText(getApplicationContext(), "Wrong usr/pass", Toast.LENGTH_LONG).show();
+
+                    }
+                }else{
+                    // user didn't entered username or password
+                    // Show alert asking him to enter the details
+                    Toast.makeText(getApplicationContext(), "Enter usr and pass", Toast.LENGTH_LONG).show();
+                }
+
 
             }
 

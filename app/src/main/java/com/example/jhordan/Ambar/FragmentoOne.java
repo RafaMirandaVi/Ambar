@@ -60,7 +60,6 @@ public class FragmentoOne extends Fragment {
         user = sessionM.getUserDetails();
         String sessionName = user.get(sessionM.KEY_NAME);
         headerSalas.setText(user.get(sessionM.KEY_NAME));
-        headerSalas.setText(sessionName);
         Log.d("ONE","onCreateView");
 
         /**RequestQueue queue = Volley.newRequestQueue(getActivity());
