@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -19,10 +20,13 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 public class FragmentoOne extends Fragment {
 
-    public FragmentoOne() {
-    }
+    public TextView headerSalas;
+    SessionManagement sessionM;
+    HashMap<String,String> user;
 
     public static FragmentoOne newInstance(int position) {
 
@@ -41,9 +45,7 @@ public class FragmentoOne extends Fragment {
         // like to add items to the Options Menu
         setHasOptionsMenu(true);
         // update the actionbar to show the up carat/affordance
-
-
-
+        Log.d("ONE","onCreate");
 
     }
     String url = "http://httpbin.org/get";
@@ -51,6 +53,15 @@ public class FragmentoOne extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.one, container, false);
+
+        // Poner datos de usuario
+        headerSalas = (TextView)v.findViewById(R.id.textViewSalasHeader);
+        sessionM = new SessionManagement(getActivity().getApplicationContext());
+        user = sessionM.getUserDetails();
+        String sessionName = user.get(sessionM.KEY_NAME);
+        headerSalas.setText(user.get(sessionM.KEY_NAME));
+        headerSalas.setText(sessionName);
+        Log.d("ONE","onCreateView");
 
         /**RequestQueue queue = Volley.newRequestQueue(getActivity());
 
@@ -118,6 +129,8 @@ public class FragmentoOne extends Fragment {
             }
 
         });
+
+
 
         mRequestQueue.add(jr);
 
