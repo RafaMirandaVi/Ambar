@@ -6,11 +6,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class FragmentoTwo extends Fragment implements View.OnClickListener {
+
+    RequestQueue queue;
 
     public FragmentoTwo() {
     }
@@ -34,31 +47,46 @@ public class FragmentoTwo extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.two, container, false);
 
-        btn = (ImageButton) v.findViewById(R.id.button);
-        /**edt = (EditText)v.findViewById(R.id.editText);
+        // GET with volley
 
+        queue = Volley.newRequestQueue(getActivity());  // this = context
+        final String url = "http://192.168.15.10:3000/api/arduinos";
+                // prepare the Request
+                JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>()
+                        {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                // display response
+                                Log.d("success", response.toString());
+                                //response.getInt(cosa);
+                                try {
+                                    Log.d("TRYING", "jus about to get JSONS");
+                                    String JSONArrayStr = response.getJSONArray("arduinos").getJSONObject(0).getString("id_arduino");
+                                    Integer size = response.getJSONArray("arduinos").length();
+                                    Log.d("getJSONArray", JSONArrayStr);
+                                    Log.d("Size", size.toString());
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Log.e("FAIL", "uy chavo, catch");
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
 
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.e("Error", error.toString());
+                            }
+                        }
+                );
+                // add it to the RequestQueue
+                //Log.d("Fail","llega pero no te muestra 'get request'");
+                queue.add(getRequest);
+                //Log.d("Success2", getRequest.toString());
 
-                Toast.makeText(getActivity(), edt.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });*/
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Toast.makeText(getActivity(), "hola como estas ?", Toast.LENGTH_SHORT).show();
-
-
-            }
-        });
-
-
-
+        // finish GET with volley
         return v;
 
     }
