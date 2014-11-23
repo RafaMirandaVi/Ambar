@@ -34,9 +34,9 @@ public class MyActivity extends ActionBarActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         sessionM = new SessionManagement(getApplicationContext());
         sessionM.checkLogin(); //Solo hace el redireccionamiento
+        super.onCreate(savedInstanceState);
         Toast.makeText(getApplicationContext(), "User Login Status: " + sessionM.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         setContentView(R.layout.activity_my);
@@ -88,6 +88,7 @@ public class MyActivity extends ActionBarActivity
 
             case 3:
                 Log.d("NAV_DRAWER","log out");
+                finish();
                 sessionM.logoutUser();
             default:
 
@@ -98,38 +99,54 @@ public class MyActivity extends ActionBarActivity
         }
 
     public void onSectionAttached(int number) {
+        sessionM = new SessionManagement(getApplicationContext());
+        sessionM.checkLogin();
         Log.d("MYACTIVITY","onSectionAttached");
 
         switch (number) {
             case 0:
                 mTitle = getString(R.string.title_section1);
+                Log.d("mTitle","Inicio");
                 break;
             case 1:
                 mTitle = getString(R.string.title_section2);
+                Log.d("mTitle","Inventario");
                 break;
             case 2:
                 mTitle = getString(R.string.title_section3);
+                Log.d("mTitle","Perfil");
+                break;
+            default:
+                //System.exit(0); //en vez de finish
+                finish();
+                Log.d("mTitle","finish");
                 break;
         }
-
+        /*
         if (toolbar!=null)
         {
             toolbar.setTitle(mTitle);
-        }
+        }*/
     }
-
+    public void onDestroy(){
+        super.onDestroy();
+        Log.d("MYACTIVITY","onDestroy");
+    }
+/*
     public void restoreActionBar() {
+        Log.d("MYACTIVITY","restoreActionBar");
        // ActionBar actionBar = getActionBar();
        // actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
        // actionBar.setDisplayShowTitleEnabled(true);
        // actionBar.setTitle(mTitle);
 
         toolbar.setTitle(mTitle);
-    }
+    }*/
 
-
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Log.d("MYACTIVITY","onCreateOptionsMenu");
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
@@ -139,10 +156,11 @@ public class MyActivity extends ActionBarActivity
             return true;
         }
         return super.onCreateOptionsMenu(menu);
-    }
-
+    }*/
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d("MYACTIVITY","onOptionItemSelected");
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -151,7 +169,7 @@ public class MyActivity extends ActionBarActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     /**
      * A placeholder fragment containing a simple view.
@@ -182,12 +200,14 @@ public class MyActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_my, container, false);
+            Log.d("MYACTIVITY","onCreateView");
             return rootView;
         }
 
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
+            Log.d("MYACTIVITY","onAttach");
             ((MyActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }

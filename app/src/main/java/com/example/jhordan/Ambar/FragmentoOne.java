@@ -96,7 +96,7 @@ public class FragmentoOne extends Fragment {
         );
 
         queue.add(request);*/
-
+        /*
         RequestQueue mRequestQueue =  Volley.newRequestQueue(getActivity().getApplicationContext());
 
         JsonObjectRequest jr = new JsonObjectRequest(Request.Method.GET,url,null,new Response.Listener<JSONObject>() {
@@ -110,7 +110,7 @@ public class FragmentoOne extends Fragment {
                     String essai = value.getString("headers");
                     /**
                      * just for check
-                     * */
+                     *
                     Toast.makeText(getActivity(), "" + essai, Toast.LENGTH_SHORT).show();
 
                     Log.d("volley output", essai);
@@ -127,11 +127,11 @@ public class FragmentoOne extends Fragment {
                 Log.d("logerror",error.getMessage());
             }
 
-        });
+        });*/
 
 
 
-        mRequestQueue.add(jr);
+        //mRequestQueue.add(jr);
 
         return v;
     }
