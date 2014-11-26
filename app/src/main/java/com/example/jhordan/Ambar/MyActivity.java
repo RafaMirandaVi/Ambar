@@ -1,8 +1,7 @@
 package com.example.jhordan.Ambar;
 
-import android.app.Activity;
-
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.pm.PackageInstaller;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -14,19 +13,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+
 
 public class MyActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+
     private NavigationDrawerFragment mNavigationDrawerFragment;
     SessionManagement sessionM;
-    /**
+    /*
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
@@ -34,10 +40,10 @@ public class MyActivity extends ActionBarActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         sessionM = new SessionManagement(getApplicationContext());
         sessionM.checkLogin(); //Solo hace el redireccionamiento
-        super.onCreate(savedInstanceState);
-        Toast.makeText(getApplicationContext(), "User Login Status: " + sessionM.isLoggedIn(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "User Login Status: " + sessionM.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         setContentView(R.layout.activity_my);
 
@@ -70,7 +76,7 @@ public class MyActivity extends ActionBarActivity
         switch (position) {
             case 0:
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, Fragment_my.newInstance(position))
+                        .replace(R.id.container, FragmentoCollection.newInstance(position))
                         .commit();
 
                 break;
@@ -88,16 +94,18 @@ public class MyActivity extends ActionBarActivity
 
             case 3:
                 Log.d("NAV_DRAWER","log out");
+                //finishActivity(PlaceholderFragment);
                 finish();
                 sessionM.logoutUser();
+                break;
             default:
 
                 break;
          }
 
-        onSectionAttached(position);
+        //onSectionAttached(position);
         }
-
+    /*
     public void onSectionAttached(int number) {
         sessionM = new SessionManagement(getApplicationContext());
         sessionM.checkLogin();
@@ -126,8 +134,33 @@ public class MyActivity extends ActionBarActivity
         if (toolbar!=null)
         {
             toolbar.setTitle(mTitle);
-        }*/
+        }
+    }*/
+    public void onStart(){
+        super.onStart();
+        Log.d("MYACTIVITY","onStart");
     }
+
+    public void onRestart() {
+        super.onRestart();
+        Log.d("MYACTIVITY","onRestart");
+    }
+
+    public void onResume(){
+        super.onResume();
+        Log.d("MYACTIVITY","onResume");
+    }
+
+    public void onPause(){
+        super.onPause();
+        Log.d("MYACTIVITY","onPause");
+    }
+
+    public void onStop(){
+        super.onStop();
+        Log.d("MYACTIVITY","onStop");
+    }
+
     public void onDestroy(){
         super.onDestroy();
         Log.d("MYACTIVITY","onDestroy");
@@ -170,26 +203,25 @@ public class MyActivity extends ActionBarActivity
         }
         return super.onOptionsItemSelected(item);
     }*/
+    /*
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
-         */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         /**
          * Returns a new instance of this fragment for the given section
          * number.
-         */
+
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
+            String sectionNumberStr = String.valueOf(sectionNumber);
+            Log.d("PLACEHOLDER", sectionNumberStr);
             return fragment;
         }
 
@@ -204,14 +236,14 @@ public class MyActivity extends ActionBarActivity
             return rootView;
         }
 
-        @Override
+        /*@Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
             Log.d("MYACTIVITY","onAttach");
             ((MyActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
-    }
+    }*/
 
 
 

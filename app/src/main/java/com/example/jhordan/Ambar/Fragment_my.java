@@ -37,12 +37,11 @@ public class Fragment_my extends android.support.v4.app.Fragment {
 
 
         listaFragments = new ArrayList<android.support.v4.app.Fragment>();
-        listaFragments.add(FragmentoOne.newInstance(0));
+        listaFragments.add(FragmentoTwo.newInstance(0));
         listaFragments.add(FragmentoTwo.newInstance(0));
 
         // Creamos nuestro Adapter
         mPagerAdapter = new PageAdapter(getFragmentManager(), listaFragments);
-
 
         // Initialize the ViewPager and set an adapter
         ViewPager pager = (ViewPager) v.findViewById(R.id.pager);
@@ -55,13 +54,9 @@ public class Fragment_my extends android.support.v4.app.Fragment {
 
         tabs.setShouldExpand(true);
 
-
        // tabs.setTextColorResource(R.color.white);
        // tabs.setDividerColor(getResources().getColor(R.color.accent));
         tabs.setViewPager(pager);
-
-
-
 
         return  v;
     }
