@@ -1,29 +1,17 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.Activities;
 
-import android.app.Fragment;
-import android.app.ProgressDialog;
-import android.content.pm.PackageInstaller;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.jhordan.Ambar.Fragments.Fragment_my;
+import com.example.jhordan.Ambar.Fragments.FragmentoCollection;
+import com.example.jhordan.Ambar.MenuToolbar.NavigationDrawerFragment;
+import com.example.jhordan.Ambar.Fragments.Otro;
+import com.example.jhordan.Ambar.R;
+import com.example.jhordan.Ambar.util.SessionManagement;
 
 
 public class MyActivity extends ActionBarActivity
@@ -83,13 +71,13 @@ public class MyActivity extends ActionBarActivity
 
             case 1:
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.container,Otro.newInstance(position)).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, Otro.newInstance(position)).commit();
 
                 break;
 
             case 2:
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.container,Fragment_my.newInstance(position)).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, Fragment_my.newInstance(position)).commit();
                 break;
 
             case 3:

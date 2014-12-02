@@ -1,4 +1,4 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.example.jhordan.Ambar.FragmentoTwo;
+import com.example.jhordan.Ambar.adapter.PageAdapter;
+import com.example.jhordan.Ambar.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +58,7 @@ public class Fragment_my extends android.support.v4.app.Fragment {
         tabs.setShouldExpand(true);
 
        // tabs.setTextColorResource(R.color.white);
-       // tabs.setDividerColor(getResources().getColor(R.color.accent));
+        tabs.setDividerColor(getResources().getColor(R.color.accent));
         tabs.setViewPager(pager);
 
         return  v;

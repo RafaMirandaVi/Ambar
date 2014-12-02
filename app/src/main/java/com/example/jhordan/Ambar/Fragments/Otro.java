@@ -1,4 +1,4 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.jhordan.Ambar.Activities.DetailActivity;
+import com.example.jhordan.Ambar.R;
 import com.github.mrengineer13.snackbar.SnackBar;
 import com.melnykov.fab.FloatingActionButton;
 

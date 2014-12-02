@@ -1,9 +1,7 @@
-package com.example.jhordan.Ambar.model;
+package com.example.jhordan.Ambar.models;
 /**
  * Created by chicharo on 24/11/14.
  */
-
-import android.util.Log;
 
 import java.util.ArrayList;
 

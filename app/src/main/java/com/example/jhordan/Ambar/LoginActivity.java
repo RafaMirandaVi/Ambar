@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.jhordan.Ambar.Activities.MyActivity;
+import com.example.jhordan.Ambar.util.SessionManagement;
+
 
 public class LoginActivity extends Activity {
 

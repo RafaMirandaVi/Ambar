@@ -1,6 +1,8 @@
 package com.example.jhordan.Ambar;
 
 
+import com.example.jhordan.Ambar.adapter.ListViewItemInterface;
+
 public class ItemContentSection implements ListViewItemInterface {
 
     private String contentTitle;

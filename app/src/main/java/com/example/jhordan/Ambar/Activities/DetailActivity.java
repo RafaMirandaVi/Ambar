@@ -1,7 +1,10 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.Activities;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+
+import com.example.jhordan.Ambar.Activities.BaseActivity;
+import com.example.jhordan.Ambar.R;
 
 public class DetailActivity extends BaseActivity {
 
@@ -14,8 +17,6 @@ public class DetailActivity extends BaseActivity {
 
         toolbar.setSubtitle(R.string.action_settings);
         toolbar.setSubtitleTextColor(getResources().getColor(R.color.accent));
-
-
 
     }
 

@@ -5,7 +5,7 @@ package com.example.jhordan.Ambar.adapter;
 
 import com.example.jhordan.Ambar.R;
 import com.example.jhordan.Ambar.app.AppController;
-import com.example.jhordan.Ambar.model.colleccion;
+import com.example.jhordan.Ambar.models.colleccion;
 
 import java.util.List;
 

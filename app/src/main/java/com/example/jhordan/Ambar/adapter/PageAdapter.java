@@ -1,4 +1,4 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;

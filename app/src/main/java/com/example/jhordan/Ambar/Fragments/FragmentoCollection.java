@@ -1,4 +1,4 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,9 +15,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.jhordan.Ambar.Activities.MyActivity;
+import com.example.jhordan.Ambar.R;
+import com.example.jhordan.Ambar.util.SessionManagement;
 import com.example.jhordan.Ambar.adapter.CustomListAdapter;
 import com.example.jhordan.Ambar.app.AppController;
-import com.example.jhordan.Ambar.model.colleccion;
+import com.example.jhordan.Ambar.models.colleccion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,11 +55,7 @@ public class FragmentoCollection extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // needed to indicate that the fragment would
-        // like to add items to the Options Menu
         setHasOptionsMenu(true);
-        // update the actionbar to show the up carat/affordance
-        //Log.d("FragmentoCollection","onCreate");
 
     }
 
@@ -89,7 +87,7 @@ public class FragmentoCollection extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
+                        //Log.d(TAG, response.toString());
                         //hidePDialog();
 
                         // Parsing json
@@ -173,42 +171,6 @@ public class FragmentoCollection extends Fragment {
         );
 
         queue.add(request);*/
-        /*
-        RequestQueue mRequestQueue =  Volley.newRequestQueue(getActivity().getApplicationContext());
-
-        JsonObjectRequest jr = new JsonObjectRequest(Request.Method.GET,url,null,new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.i("log", response.toString());
-
-
-                try{
-                    JSONObject value = response.getJSONObject("headers");
-                    String essai = value.getString("headers");
-                    /**
-                     * just for check
-                     *
-                    Toast.makeText(getActivity(), "" + essai, Toast.LENGTH_SHORT).show();
-
-                    Log.d("volley output", essai);
-                }
-                catch(Exception e){
-                    e.printStackTrace();
-                }
-
-            }
-        },new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "errrrroooor", Toast.LENGTH_LONG).show();
-                Log.d("logerror",error.getMessage());
-            }
-
-        });*/
-
-
-
-        //mRequestQueue.add(jr);
 
         return v;
     }
