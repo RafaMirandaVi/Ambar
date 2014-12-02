@@ -37,7 +37,7 @@ public class Fragment_my extends android.support.v4.app.Fragment {
 
 
         listaFragments = new ArrayList<android.support.v4.app.Fragment>();
-        listaFragments.add(FragmentoTwo.newInstance(0));
+        listaFragments.add(FragmentoCollection.newInstance(0));
         listaFragments.add(FragmentoTwo.newInstance(0));
 
         // Creamos nuestro Adapter

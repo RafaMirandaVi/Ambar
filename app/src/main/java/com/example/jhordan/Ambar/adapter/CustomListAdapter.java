@@ -26,13 +26,15 @@ public class CustomListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<colleccion> movieItems;
+    private List<String> listGenreStr;
 
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
     public CustomListAdapter(Activity activity, List<colleccion> movieItems) {
-        Log.d("CustomListAdapter","init");
         this.activity = activity;
         this.movieItems = movieItems;
+        int intGetCount = getCount();
+        Log.d("CLArecivedSize",String.valueOf(intGetCount));
     }
 
     @Override
@@ -52,13 +54,12 @@ public class CustomListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log.d("CustomListAdapter","getView");
+        //Log.d("getView",String.valueOf(position));
         if (inflater == null)
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_content, null);
-            Log.d("CustomListAdapter","inflate");
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();

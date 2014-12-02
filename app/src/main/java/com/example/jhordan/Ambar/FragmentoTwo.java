@@ -48,7 +48,7 @@ public class FragmentoTwo extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.two, container, false);
 
         // GET with volley
-
+        /*
         queue = Volley.newRequestQueue(getActivity());  // this = context
         final String url = "http://192.168.15.10:3000/api/arduinos";
                 // prepare the Request
@@ -85,7 +85,7 @@ public class FragmentoTwo extends Fragment implements View.OnClickListener {
                 //Log.d("Fail","llega pero no te muestra 'get request'");
                 queue.add(getRequest);
                 //Log.d("Success2", getRequest.toString());
-
+        */
         // finish GET with volley
         return v;
 

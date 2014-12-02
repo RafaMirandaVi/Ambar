@@ -70,7 +70,7 @@ public class FragmentoCollection extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d("FRAGCOLLECTION","onCreateView");
-        View v = inflater.inflate(R.layout.collection, container, false);
+        final View v = inflater.inflate(R.layout.collection, container, false);
 
         // Poner datos de usuario
         //headerSalas = (TextView)v.findViewById(R.id.textViewSalasHeader);
@@ -79,11 +79,10 @@ public class FragmentoCollection extends Fragment {
         String sessionName = user.get(sessionM.KEY_NAME);
         //headerSalas.setText(user.get(sessionM.KEY_NAME));
 
-        listView = (ListView) v.findViewById(R.id.listCollection);
+
         //listView.setAdapter(new ArrayAdapter<String>(getActivity(),
         //        android.R.layout.simple_list_item_1, sistemas));
-        adapter = new CustomListAdapter(getActivity(), movieList);
-        listView.setAdapter(adapter);
+
 
         // Creating volley request obj
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
@@ -94,7 +93,7 @@ public class FragmentoCollection extends Fragment {
                         //hidePDialog();
 
                         // Parsing json
-                        for (int i = 0; i < 1/*response.length()*/; i++) {
+                        for (int i = 0; i < response.length(); i++) {
                             try {
 
                                 JSONObject obj = response.getJSONObject(i);
@@ -121,7 +120,9 @@ public class FragmentoCollection extends Fragment {
                             }
 
                         }
-
+                        listView = (ListView) v.findViewById(R.id.listCollection);
+                        adapter = new CustomListAdapter(getActivity(), movieList);
+                        listView.setAdapter(adapter);
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
                         //adapter.notifyDataSetChanged();
