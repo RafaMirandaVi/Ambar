@@ -1,4 +1,4 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jhordan.Ambar.Activities.MyActivity;
+import com.example.jhordan.Ambar.R;
 import com.example.jhordan.Ambar.util.SessionManagement;
 
 

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.example.jhordan.Ambar.FragmentoTwo;
 import com.example.jhordan.Ambar.adapter.PageAdapter;
 import com.example.jhordan.Ambar.R;
 

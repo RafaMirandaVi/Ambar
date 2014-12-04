@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.example.jhordan.Ambar.LoginActivity;
+import com.example.jhordan.Ambar.Activities.LoginActivity;
 
 import java.util.HashMap;
 

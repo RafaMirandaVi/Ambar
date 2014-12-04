@@ -1,5 +1,6 @@
 package com.example.jhordan.Ambar.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,13 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.jhordan.Ambar.Activities.DetailActivity;
 import com.example.jhordan.Ambar.Activities.MyActivity;
 import com.example.jhordan.Ambar.R;
 import com.example.jhordan.Ambar.util.SessionManagement;
@@ -77,11 +81,6 @@ public class FragmentoCollection extends Fragment {
         String sessionName = user.get(sessionM.KEY_NAME);
         //headerSalas.setText(user.get(sessionM.KEY_NAME));
 
-
-        //listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-        //        android.R.layout.simple_list_item_1, sistemas));
-
-
         // Creating volley request obj
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
@@ -121,6 +120,20 @@ public class FragmentoCollection extends Fragment {
                         listView = (ListView) v.findViewById(R.id.listCollection);
                         adapter = new CustomListAdapter(getActivity(), movieList);
                         listView.setAdapter(adapter);
+
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Log.d("FragmentoCollection","bai bai");
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, Otro.newInstance(position)).commit();
+
+
+                                /*Intent intent = new Intent(getActivity(), DetailActivity.class);
+                                startActivity(intent);*/
+
+                            }
+                        });
+
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
                         //adapter.notifyDataSetChanged();
