@@ -2,6 +2,8 @@ package com.example.jhordan.Ambar.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,12 +64,18 @@ public class GridCollectionObjectsAdapter extends BaseAdapter {
         TextView temperatura = (TextView)convertView.findViewById(R.id.tempCollectionObjectObject);
         TextView humedad = (TextView)convertView.findViewById(R.id.humCollectionObjectObject);
 
-        img.setImageUrl("http://media-cache-ak0.pinimg.com/736x/97/fe/02/97fe027303d1a92202fd0a47a2450143.jpg", imageLoader);
+        img.setImageUrl("http://2.bp.blogspot.com/_mXRSOStD_DQ/S-Dksnn9yBI/AAAAAAAAABg/aL1Ro43bbeQ/s320/Plankton.gif", imageLoader);
+        //"http://media-cache-ak0.pinimg.com/736x/97/fe/02/97fe027303d1a92202fd0a47a2450143.jpg"
 
-        title.setText("Marina");
-        temperatura.setText("Temp: "+"20°");
-        humedad.setText("Humi: "+"59%");
+        title.setTypeface(Typeface.createFromAsset(activity.getAssets(), "fonts/icomoon.ttf")); //icomoon.ttf
+        title.setText(String.valueOf((char) 0xe603));
+
+        //title.setText("Plankton");
+        humedad.setText("Maldad: "+"1%");
+        temperatura.setText("Aire Caliente: "+"99%");
+
 
         return convertView;
     }
+
 }
