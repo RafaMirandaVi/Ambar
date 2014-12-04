@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.jhordan.Ambar.Activities.CollectionObjectsActivity;
 import com.example.jhordan.Ambar.Activities.DetailActivity;
 import com.example.jhordan.Ambar.Activities.MyActivity;
 import com.example.jhordan.Ambar.R;
@@ -125,11 +126,12 @@ public class FragmentoCollection extends Fragment {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 Log.d("FragmentoCollection","bai bai");
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, Otro.newInstance(position)).commit();
+                                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, Otro.newInstance(position)).commit();
 
 
-                                /*Intent intent = new Intent(getActivity(), DetailActivity.class);
-                                startActivity(intent);*/
+                                Intent intent = new Intent(getActivity(), CollectionObjectsActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
 
                             }
                         });

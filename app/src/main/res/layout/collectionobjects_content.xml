@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#FFF">
+    <!-- Thumbnail Image -->
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/thumbnailCollectionObject"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        />
+    <!-- Movie Title -->
+    <TextView
+        android:id="@+id/titleCollectionObjectObject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnailCollectionObject"
+        android:textColor="#000"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/tempCollectionObjectObject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleCollectionObjectObject"
+        android:textColor="#c3c3c3"
+        />
+    <TextView
+        android:id="@+id/humCollectionObjectObject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tempCollectionObjectObject"
+        android:textColor="#c3c3c3"
+        />
+    <!-- Rating -->
+
+</RelativeLayout>

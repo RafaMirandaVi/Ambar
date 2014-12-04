@@ -38,8 +38,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
 
                 android:value=".DetailActivity"/>
-
-
+        </activity>
+        <activity android:name=".Activities.CollectionObjectsActivity">
         </activity>
     </application>
 
