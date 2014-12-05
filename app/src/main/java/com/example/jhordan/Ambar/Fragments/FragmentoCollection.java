@@ -1,6 +1,5 @@
 package com.example.jhordan.Ambar.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,14 +11,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.example.jhordan.Ambar.Activities.CollectionObjectsActivity;
-import com.example.jhordan.Ambar.Activities.DetailActivity;
 import com.example.jhordan.Ambar.Activities.MyActivity;
 import com.example.jhordan.Ambar.R;
 import com.example.jhordan.Ambar.util.SessionManagement;
@@ -60,7 +56,7 @@ public class FragmentoCollection extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true); //WTF?
 
     }
 
@@ -126,11 +122,9 @@ public class FragmentoCollection extends Fragment {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 Log.d("FragmentoCollection","bai bai");
-                                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, Otro.newInstance(position)).commit();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, CollectionObjectsFragment.newInstance(position)).commit();
 
-                                Intent intent = new Intent(getActivity(), CollectionObjectsActivity.class);
-                                startActivity(intent);
-                                getActivity().finish();
+
 
                             }
                         });

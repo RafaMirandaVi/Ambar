@@ -5,7 +5,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import com.example.jhordan.Ambar.Fragments.CollectionObjectsFragment;
 import com.example.jhordan.Ambar.Fragments.Fragment_my;
 import com.example.jhordan.Ambar.Fragments.FragmentoCollection;
 import com.example.jhordan.Ambar.MenuToolbar.NavigationDrawerFragment;
@@ -65,7 +68,7 @@ public class MyActivity extends ActionBarActivity
         switch (position) {
             case 0:
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, FragmentoCollection.newInstance(position))
+                        .replace(R.id.container, CollectionObjectsFragment.newInstance(position))
                         .commit();
 
                 break;
@@ -92,9 +95,9 @@ public class MyActivity extends ActionBarActivity
                 break;
          }
 
-        //onSectionAttached(position);
+        onSectionAttached(position);
         }
-    /*
+
     public void onSectionAttached(int number) {
         sessionM = new SessionManagement(getApplicationContext());
         sessionM.checkLogin();
@@ -115,16 +118,16 @@ public class MyActivity extends ActionBarActivity
                 break;
             default:
                 //System.exit(0); //en vez de finish
-                finish();
+                //finish();
                 Log.d("mTitle","finish");
                 break;
         }
-        /*
+
         if (toolbar!=null)
         {
             toolbar.setTitle(mTitle);
         }
-    }*/
+    }
     public void onStart(){
         super.onStart();
         Log.d("MYACTIVITY","onStart");
@@ -154,7 +157,7 @@ public class MyActivity extends ActionBarActivity
         super.onDestroy();
         Log.d("MYACTIVITY","onDestroy");
     }
-/*
+
     public void restoreActionBar() {
         Log.d("MYACTIVITY","restoreActionBar");
        // ActionBar actionBar = getActionBar();
@@ -163,9 +166,9 @@ public class MyActivity extends ActionBarActivity
        // actionBar.setTitle(mTitle);
 
         toolbar.setTitle(mTitle);
-    }*/
+    }
 
-    /*
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.d("MYACTIVITY","onCreateOptionsMenu");
@@ -178,8 +181,8 @@ public class MyActivity extends ActionBarActivity
             return true;
         }
         return super.onCreateOptionsMenu(menu);
-    }*/
-    /*
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d("MYACTIVITY","onOptionItemSelected");
@@ -191,7 +194,7 @@ public class MyActivity extends ActionBarActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
     /*
 
     public static class PlaceholderFragment extends Fragment {

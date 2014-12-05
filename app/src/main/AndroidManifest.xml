@@ -39,8 +39,6 @@
 
                 android:value=".DetailActivity"/>
         </activity>
-        <activity android:name=".Activities.CollectionObjectsActivity">
-        </activity>
     </application>
 
 </manifest>
