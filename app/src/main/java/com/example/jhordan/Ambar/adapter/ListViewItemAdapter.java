@@ -1,4 +1,4 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.jhordan.Ambar.ItemContentSection;
+import com.example.jhordan.Ambar.ItemSection;
+import com.example.jhordan.Ambar.R;
 
 import java.util.ArrayList;
 import java.util.List;

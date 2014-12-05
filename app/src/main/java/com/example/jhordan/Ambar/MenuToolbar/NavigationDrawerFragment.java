@@ -1,4 +1,4 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.MenuToolbar;
 
 
 import android.app.Activity;
@@ -21,6 +21,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.jhordan.Ambar.ItemContentSection;
+import com.example.jhordan.Ambar.R;
+import com.example.jhordan.Ambar.adapter.ListViewItemAdapter;
+import com.example.jhordan.Ambar.adapter.ListViewItemInterface;
 
 import java.util.ArrayList;
 import java.util.List;

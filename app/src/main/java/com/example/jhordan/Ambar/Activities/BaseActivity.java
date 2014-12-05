@@ -1,8 +1,10 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+
+import com.example.jhordan.Ambar.R;
 
 public abstract class BaseActivity extends ActionBarActivity {
 

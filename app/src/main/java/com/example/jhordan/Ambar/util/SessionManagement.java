@@ -1,8 +1,10 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.util;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
+import com.example.jhordan.Ambar.Activities.LoginActivity;
 
 import java.util.HashMap;
 

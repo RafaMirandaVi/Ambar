@@ -1,4 +1,4 @@
-package com.example.jhordan.Ambar;
+package com.example.jhordan.Ambar.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.jhordan.Ambar.Activities.DetailActivity;
+import com.example.jhordan.Ambar.R;
 import com.github.mrengineer13.snackbar.SnackBar;
 import com.melnykov.fab.FloatingActionButton;
 
@@ -49,9 +51,9 @@ public class Otro extends Fragment {
     }
 
 
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.otro, container, false);
 
 
@@ -69,7 +71,7 @@ public class Otro extends Fragment {
 
 
                // getActivity().getSupportFragmentManager().beginTransaction()
-                 //       .replace(R.id.container, FragmentoOne.newInstance(position)).addToBackStack("regresa")
+                 //       .replace(R.id.container, FragmentoCollection.newInstance(position)).addToBackStack("regresa")
                    //     .commit();
 
             }
@@ -84,11 +86,7 @@ public class Otro extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                Toast.makeText(getActivity(), "hola como estas ?", Toast.LENGTH_SHORT).show();
-
-
+                Toast.makeText(getActivity(), "Marina and the diamonds", Toast.LENGTH_SHORT).show();
             }
         });
 
