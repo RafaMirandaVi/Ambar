@@ -6,11 +6,9 @@
 
     <GridView
         android:id="@+id/gridCollectionObjects"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:columnWidth="200dp"
-        android:numColumns="auto_fit"
-        android:stretchMode="columnWidth"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
         android:horizontalSpacing="35dp"
         android:verticalSpacing="30dp"
         android:gravity="center"

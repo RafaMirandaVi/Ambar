@@ -128,7 +128,6 @@ public class FragmentoCollection extends Fragment {
                                 Log.d("FragmentoCollection","bai bai");
                                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, Otro.newInstance(position)).commit();
 
-
                                 Intent intent = new Intent(getActivity(), CollectionObjectsActivity.class);
                                 startActivity(intent);
                                 getActivity().finish();
