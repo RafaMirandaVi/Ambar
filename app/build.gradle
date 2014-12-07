@@ -5,7 +5,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "com.example.dreedi.Ambar"
+        applicationId "com.example.chicharo.clean_ambar"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
@@ -21,11 +21,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:21.0.2'//.0.0
-    compile "com.android.support:appcompat-v7:21.0.0"
-    compile 'com.android.support:support-v13:21.0.0'
-    compile 'com.jpardogo.materialtabstrip:library:1.0.0'
-    compile 'com.melnykov:floatingactionbutton:1.0.6'
-    compile 'com.github.mrengineer13:snackbar:0.4.0'
-    compile 'com.mcxiaoke.volley:library:1.0.7'
+    compile 'com.android.support:support-v13:21.0.2'
+    compile 'com.jpardogo.materialtabstrip:library:1.0.0' //PagerSlidingTabStrip
+    //compile 'com.mcxiaoke.volley:library:1.0.+' //Volley GH
+    compile 'com.mcxiaoke.volley:library:1.0.7' //volley Gradle Please
 }

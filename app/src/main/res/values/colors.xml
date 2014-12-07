@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_dark">#12A6AD</color>
-    <color name="primary">#00AFC2</color>
-    <color name="accent">#F6C27c</color>
-    <color name="temperature">#0C758E</color>
-    <color name="humidity">#9C0000</color>
-    <color name="textColor">#2D373A</color>
-    <color name="white">#FFFFFF</color>
+    <color name="list_item_title">#DDDDDD</color>
+    <color name="counter_text_color">#c3c3c3</color>
 
-    <!--ListCollection-->
-    <color name="genre">#666666</color>
-    <color name="year">#888888</color>
-    <color name="list_divider">#d9d9d9</color>
-    <color name="list_row_start_color">#ffffff</color>
-    <color name="list_row_end_color">#ffffff</color>
-    <color name="list_row_hover_start_color">#ebeef0</color>
-    <color name="list_row_hover_end_color">#ebeef0</color>
+    <color name="list_divider_navDrawer">#000000</color>
+    <color name="list_background">#FFFFFF</color>
+    <color name="counter_text_bg">#00868B</color>
 
+    <color name="list_background_pressed">#c6c6c6</color>
+
+        <color name="primary_dark">#12A6AD</color>
+        <color name="primary">#00AFC2</color>
+        <color name="accent">#F6C27c</color>
+        <color name="temperature">#0C758E</color>
+        <color name="humidity">#9C0000</color>
+        <color name="textColor">#2D373A</color>
+        <color name="white">#FFFFFF</color>
+
+        <!--ListCollection-->
+        <color name="genre">#666666</color>
+        <color name="year">#888888</color>
+        <color name="list_divider">#d9d9d9</color>
+        <color name="list_row_start_color">#ffffff</color>
+        <color name="list_row_end_color">#ffffff</color>
+        <color name="list_row_hover_start_color">#ebeef0</color>
+        <color name="list_row_hover_end_color">#ebeef0</color>
 </resources>
