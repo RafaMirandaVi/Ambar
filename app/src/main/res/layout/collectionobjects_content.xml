@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#655321">
+    android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@color/backgroundCollectionObject">
     <!-- Thumbnail Image -->
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/thumbnailCollectionObject"
@@ -18,13 +18,13 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/thumbnailCollectionObject"
         android:layout_toEndOf="@id/thumbnailCollectionObject"
-        android:textColor="#000"
+        android:textColor="@color/titleCollectionObjec"
         android:textStyle="bold"
         android:textSize="30sp"
         android:textColorLink="#000"
         />
     <TextView
-        android:id="@+id/humCollectionObjectObject"
+        android:id="@+id/humIcomoonCollectionObjectObject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -32,11 +32,23 @@
         android:layout_below="@id/titleCollectionObjectObject"
         android:layout_toRightOf="@id/thumbnailCollectionObject"
         android:layout_toEndOf="@id/thumbnailCollectionObject"
-        android:textColor="#c3c3c3"
+        android:textColor="@color/humIcomoonCollectionObject"
         android:textSize="30sp"
         />
     <TextView
-        android:id="@+id/tempCollectionObjectObject"
+        android:id="@+id/humCollectionObjectObject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_below="@id/titleCollectionObjectObject"
+        android:layout_toRightOf="@id/humIcomoonCollectionObjectObject"
+        android:layout_toEndOf="@id/humIcomoonCollectionObjectObject"
+        android:textColor="@color/humCollectionObject"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:id="@+id/tempIcomoonCollectionObjectObject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -44,7 +56,19 @@
         android:layout_below="@id/humCollectionObjectObject"
         android:layout_toRightOf="@id/thumbnailCollectionObject"
         android:layout_toEndOf="@id/thumbnailCollectionObject"
-        android:textColor="#c3c3c3"
+        android:textColor="@color/tempIcomoonCollectionObject"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:id="@+id/tempCollectionObjectObject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_below="@id/humCollectionObjectObject"
+        android:layout_toRightOf="@id/tempIcomoonCollectionObjectObject"
+        android:layout_toEndOf="@id/tempIcomoonCollectionObjectObject"
+        android:textColor="@color/tempCollectionObject"
         android:textSize="30sp"
         />
     <!-- Rating -->
