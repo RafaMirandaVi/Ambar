@@ -1,5 +1,6 @@
 package com.example.chicharo.clean_ambar.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ import com.example.chicharo.clean_ambar.util.SessionManagement;
 import com.example.chicharo.clean_ambar.adapter.CustomListAdapter;
 import com.example.chicharo.clean_ambar.app.AppController;
 import com.example.chicharo.clean_ambar.models.CollectionModel;
+import com.example.chicharo.clean_ambar.Activities.Collection_Objects_Activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -117,9 +119,10 @@ public class Fragmento_Collection extends Fragment {
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                Log.d("FragmentoCollection","bai bai");
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, Collection_Objects_Fragment.newInstance(position)).commit();
-
+                                //Log.d("FragmentoCollection","bai bai");
+                                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, Collection_Objects_Fragment.newInstance(position)).commit();
+                                Intent Collection_Objects_Activity = new Intent(getActivity().getApplicationContext(), Collection_Objects_Activity.class);
+                                startActivity(Collection_Objects_Activity);
                             }
                         });
 
