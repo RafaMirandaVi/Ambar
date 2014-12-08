@@ -8,6 +8,7 @@ import com.example.chicharo.clean_ambar.models.NavDrawerItem;
 import com.example.chicharo.clean_ambar.adapter.NavDrawerListAdapter;
 import com.example.chicharo.clean_ambar.util.SessionManagement;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 
 /**
  * RECUERDA QUE AÑADIMOS EL JAR ANDOROID SUPPORT V13 DE EXTRAS/SUPPORT/
+ * Introduce the user to the drawer at first use
  */
 
 public class MyActivity extends FragmentActivity {
@@ -95,14 +97,14 @@ public class MyActivity extends FragmentActivity {
         mDrawerList.setAdapter(adapter);
 
 
-        getActionBar().setDisplayHomeAsUpEnabled(true); // Qué hace?
+        getActionBar().setDisplayHomeAsUpEnabled(true); // AY TE AMO TE AMO
         getActionBar().setHomeButtonEnabled(true); // Qué hace?
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
-        ){
+        ) {
             public void onDrawerClosed(View view) {
                 getActionBar().setTitle(mTitle);
                 // calling onPrepareOptionsMenu() to show action bar icons
@@ -123,12 +125,11 @@ public class MyActivity extends FragmentActivity {
         }
 
 
-
     }
 
     /**
      * Slide menu item click listener
-     * */
+     */
     private class SlideMenuClickListener implements
             ListView.OnItemClickListener {
         @Override
@@ -141,7 +142,7 @@ public class MyActivity extends FragmentActivity {
 
     /**
      * Diplaying fragment view for selected nav drawer list item
-     * */
+     */
     private void displayView(int position) {
         // update the main content by replacing fragments
         Fragment fragment = null;
@@ -150,13 +151,14 @@ public class MyActivity extends FragmentActivity {
                 fragment = new Fragment_Pager();
                 break;
             case 1:
-                fragment = new HomeFragment();
+                Intent Collection_Activity = new Intent(this, Collection_Objects_Activity.class);
+                startActivity(Collection_Activity);
                 break;
             case 2:
-                fragment =new HomeFragment();
+                fragment = new HomeFragment();
                 break;
             case 3:
-                fragment =new HomeFragment();
+                fragment = new HomeFragment();
                 break;
             case 4:
                 fragment = new HomeFragment();
@@ -165,7 +167,7 @@ public class MyActivity extends FragmentActivity {
                 fragment = new HomeFragment();
                 break;
             case 6:
-                fragment = new HomeFragment(); //hacer fragmento en blanco
+                //fragment = new HomeFragment(); //hacer fragmento en blanco o no poner nada jé
                 finish();
                 sessionM.logoutUser();
                 break;
@@ -240,5 +242,10 @@ public class MyActivity extends FragmentActivity {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public void onDestroy(){
+        Log.d("MYACTIVITY","onDestroy");
+        super.onDestroy();
     }
 }

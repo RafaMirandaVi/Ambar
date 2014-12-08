@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="list_item_title">#DDDDDD</color>
-    <color name="counter_text_color">#c3c3c3</color>
-
-    <color name="list_divider_navDrawer">#000000</color>
-    <color name="list_background">#FFFFFF</color>
+        <!-- Navigation Drawer-->
+    <color name="list_divider_navDrawer">#272727</color>
+    <color name="list_background">#303030</color>
     <color name="counter_text_bg">#00868B</color>
+    <color name="list_background_pressed">#00868B</color>
+    <color name="counter_text_color">#c3c3c3</color>
+    <color name="list_item_title">#DDDDDD</color>
 
-    <color name="list_background_pressed">#c6c6c6</color>
-
-        <color name="primary_dark">#12A6AD</color>
-        <color name="primary">#00AFC2</color>
-        <color name="accent">#F6C27c</color>
-        <color name="temperature">#0C758E</color>
-        <color name="humidity">#9C0000</color>
-        <color name="textColor">#2D373A</color>
-        <color name="white">#FFFFFF</color>
-
+        <!--Fragment pager-->
+    <color name="pager_tabs">#00868B</color>
+        <!-- No sé bien -->
+    <color name="primary_dark">#12A6AD</color>
+    <color name="primary">#00AFC2</color> <!-- creo que éste es el del boton del nav Drawer -->
+    <color name="accent">#F6C27c</color>
+    <color name="temperature">#0C758E</color>
+    <color name="humidity">#9C0000</color>
+    <color name="textColor">#2D373A</color>
+    <color name="white">#FFFFFF</color>
         <!--ListCollection-->
-        <color name="genre">#666666</color>
-        <color name="year">#888888</color>
-        <color name="list_divider">#d9d9d9</color>
-        <color name="list_row_start_color">#ffffff</color>
-        <color name="list_row_end_color">#ffffff</color>
-        <color name="list_row_hover_start_color">#ebeef0</color>
-        <color name="list_row_hover_end_color">#ebeef0</color>
+    <color name="genre">#666666</color>
+    <color name="year">#888888</color>
+    <color name="list_collection_divider">#C3C4A5</color>
+    <color name="list_divider">#d9d9d9</color>
+    <color name="list_row_start_color">#ffffff</color>
+    <color name="list_row_end_color">#ffffff</color>
+    <color name="list_row_hover_start_color">#ebeef0</color>
+    <color name="list_row_hover_end_color">#ebeef0</color>
+        <!--Grid View-->
+    <color name="titleCollectionObjec">#000</color>
+    <color name="humCollectionObject">#000</color>
+    <color name="tempCollectionObject">#000</color>
+    <color name="backgroundCollectionObject">#FFF</color>
+            <!--Icomoon-->
+        <color name="humIcomoonCollectionObject">#9C0000</color>
+        <color name="tempIcomoonCollectionObject">#0C758E</color>
 </resources>

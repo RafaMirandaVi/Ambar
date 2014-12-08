@@ -5,8 +5,8 @@
         android:id="@+id/listCollection"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:divider="#c3c3c3"
-        android:dividerHeight="10dp"
+        android:divider="@color/list_collection_divider"
+        android:dividerHeight="1dp"
         />
-    <!--android:listSelector="@drawable/list_row_selector"-->
+    <!--android:dividerHeight="2dp"-->
 </RelativeLayout>

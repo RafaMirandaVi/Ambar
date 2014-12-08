@@ -64,18 +64,22 @@ public class GridCollectionObjectsAdapter extends BaseAdapter {
 
         NetworkImageView img = (NetworkImageView)convertView.findViewById(R.id.thumbnailCollectionObject);
         TextView title = (TextView)convertView.findViewById(R.id.titleCollectionObjectObject);
+        TextView temperaturaIcomoon = (TextView)convertView.findViewById(R.id.tempIcomoonCollectionObjectObject);
+        TextView humedadIcomoon = (TextView)convertView.findViewById(R.id.humIcomoonCollectionObjectObject);
         TextView temperatura = (TextView)convertView.findViewById(R.id.tempCollectionObjectObject);
         TextView humedad = (TextView)convertView.findViewById(R.id.humCollectionObjectObject);
 
         img.setImageUrl(col.getThumbnail(), imageLoader);
         //"http://media-cache-ak0.pinimg.com/736x/97/fe/02/97fe027303d1a92202fd0a47a2450143.jpg"
 
-        temperatura.setTypeface(Typeface.createFromAsset(activity.getAssets(), "fonts/icomoon.ttf"));
-        humedad.setTypeface(Typeface.createFromAsset(activity.getAssets(), "fonts/icomoon.ttf"));
+        temperaturaIcomoon.setTypeface(Typeface.createFromAsset(activity.getAssets(), "fonts/icomoon.ttf"));
+        humedadIcomoon.setTypeface(Typeface.createFromAsset(activity.getAssets(), "fonts/icomoon.ttf"));
 
         title.setText(col.getNombre());
-        temperatura.setText(String.valueOf((char) 0xe602) + ": "+String.valueOf(col.getTemperatura()));
-        humedad.setText(String.valueOf((char) 0xe605)+": "+String.valueOf(col.getHumedad()));
+        temperaturaIcomoon.setText(String.valueOf((char) 0xe602));
+        temperatura.setText( ": "+String.valueOf(col.getTemperatura()));
+        humedadIcomoon.setText(String.valueOf((char) 0xe605));
+        humedad.setText(": "+String.valueOf(col.getHumedad()));
 
 
         return convertView;
