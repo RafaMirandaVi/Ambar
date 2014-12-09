@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 //import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.chicharo.clean_ambar.Activities.MyActivity;
 import com.example.chicharo.clean_ambar.R;
+import com.example.chicharo.clean_ambar.adapter.Collection_Recycler;
 import com.example.chicharo.clean_ambar.util.SessionManagement;
 import com.example.chicharo.clean_ambar.adapter.CustomListAdapter;
 import com.example.chicharo.clean_ambar.app.AppController;
@@ -40,10 +43,10 @@ public class Fragmento_Collection extends Fragment {
     public TextView headerSalas;
     SessionManagement sessionM;
     HashMap<String,String> user;
-
+    LinearLayoutManager mLayoutManager;
     private List<CollectionModel> movieList = new ArrayList<CollectionModel>();
     private ListView listView;
-    private CustomListAdapter adapter;
+    private Collection_Recycler mAdapter;
 
     public static Fragmento_Collection newInstance(int position) {
 
@@ -58,7 +61,7 @@ public class Fragmento_Collection extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true); //WTF?
+       //setHasOptionsMenu(true); //WTF?
 
     }
 
@@ -66,9 +69,7 @@ public class Fragmento_Collection extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("FRAGCOLLECTION","onCreateView");
-        final View v = inflater.inflate(R.layout.collection_view, container, false);
-
+        final View v = inflater.inflate(R.layout.collection_view_recycler, container, false);
         // Poner datos de usuario
         //headerSalas = (TextView)v.findViewById(R.id.textViewSalasHeader);
         sessionM = new SessionManagement(getActivity().getApplicationContext());
@@ -77,11 +78,12 @@ public class Fragmento_Collection extends Fragment {
         //headerSalas.setText(user.get(sessionM.KEY_NAME));
 
         // Creating volley request obj
+        Log.d("Col","before MovieRequest");
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        //Log.d(TAG, response.toString());
+                        Log.d("col", response.toString());
                         //hidePDialog();
 
                         // Parsing json
@@ -109,12 +111,13 @@ public class Fragmento_Collection extends Fragment {
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                Log.e("Col",e.toString());
                             }
 
                         }
-                        listView = (ListView) v.findViewById(R.id.listCollection);
-                        adapter = new CustomListAdapter(getActivity(), movieList);
-                        listView.setAdapter(adapter);
+
+                        Log.d("Col","en Queue after adapter");
+
 
                         /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
@@ -133,13 +136,25 @@ public class Fragmento_Collection extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                VolleyLog.d("Col", "Error: " + error.getMessage());
                 //hidePDialog();
             }
         });
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(movieReq);
+        Log.d("Col","after Queue");
+        RecyclerView recList = (RecyclerView) v.findViewById(R.id.recycler_collection);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recList.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        recList.setLayoutManager(mLayoutManager);
+        mAdapter = new Collection_Recycler(movieList);
+        recList.setAdapter(mAdapter);
+
         return v;
     }
 }

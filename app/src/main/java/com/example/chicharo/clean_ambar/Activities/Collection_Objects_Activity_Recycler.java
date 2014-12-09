@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.example.chicharo.clean_ambar.R;
+import com.example.chicharo.clean_ambar.adapter.Collection_Card_Recycler;
 import com.example.chicharo.clean_ambar.adapter.Collection_Objects_Recycler;
 import com.example.chicharo.clean_ambar.models.Collection_Object;
 
@@ -21,13 +22,13 @@ public class Collection_Objects_Activity_Recycler extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.collection_view_recycler);
+        setContentView(R.layout.collection_view_recycler); //Agarrando la que no, pero wueno
 
         RecyclerView recList = (RecyclerView)findViewById(R.id.recycler_collection);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        recList.setHasFixedSize(true);
+        recList.setHasFixedSize(false);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
