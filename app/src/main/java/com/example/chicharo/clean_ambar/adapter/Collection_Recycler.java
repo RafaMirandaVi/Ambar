@@ -8,13 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
+import com.example.chicharo.clean_ambar.util.NetworkImageViewCircle;
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.app.AppController;
 import com.example.chicharo.clean_ambar.models.CollectionModel;
-import com.example.chicharo.clean_ambar.models.Collection_Object;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +33,7 @@ public class Collection_Recycler extends RecyclerView.Adapter<Collection_Recycle
     @Override
     public Collection_Recycler.viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.collectionlist_content, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.collection_adapter, parent, false);
         // set the view's size, margins, paddings and layout parameters
         viewHolder vh = new viewHolder(v);
         if (imageLoader == null)
@@ -80,7 +78,7 @@ public class Collection_Recycler extends RecyclerView.Adapter<Collection_Recycle
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        NetworkImageView thumbNail;
+        NetworkImageViewCircle thumbNail;
         TextView title;
         TextView rating;
         TextView genre;
@@ -88,7 +86,7 @@ public class Collection_Recycler extends RecyclerView.Adapter<Collection_Recycle
 
         public viewHolder(View vv){
             super(vv);
-            thumbNail = (NetworkImageView)vv.findViewById(R.id.thumbnailCollection);
+            thumbNail = (NetworkImageViewCircle)vv.findViewById(R.id.thumbnailCollection);
             title = (TextView) vv.findViewById(R.id.title);
             rating = (TextView) vv.findViewById(R.id.rating);
             genre = (TextView) vv.findViewById(R.id.genre);

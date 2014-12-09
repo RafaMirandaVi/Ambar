@@ -2,7 +2,6 @@ package com.example.chicharo.clean_ambar.Activities;
 
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chicharo.clean_ambar.Activities.MyActivity;
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.util.SessionManagement;
 
@@ -29,7 +27,7 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         sessionM = new SessionManagement(getApplicationContext());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_activity);
         Log.d("LOGIN","onCreate");
 
         memberLogin = (TextView)findViewById(R.id.memberLogin);
