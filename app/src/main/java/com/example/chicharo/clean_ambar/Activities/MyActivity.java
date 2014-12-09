@@ -151,11 +151,12 @@ public class MyActivity extends FragmentActivity {
                 fragment = new Fragment_Pager();
                 break;
             case 1:
-                Intent Collection_Activity = new Intent(this, Collection_Objects_Activity.class);
+                Intent Collection_Activity = new Intent(this, Collection_Objects_Activity_Recycler.class);
                 startActivity(Collection_Activity);
                 break;
             case 2:
-                fragment = new HomeFragment();
+                Intent Collection_Objects = new Intent(this, Collection_Objects_Activity_Recycler.class);
+                startActivity(Collection_Objects);
                 break;
             case 3:
                 fragment = new HomeFragment();

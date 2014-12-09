@@ -23,7 +23,7 @@ import com.example.chicharo.clean_ambar.util.SessionManagement;
 import com.example.chicharo.clean_ambar.adapter.CustomListAdapter;
 import com.example.chicharo.clean_ambar.app.AppController;
 import com.example.chicharo.clean_ambar.models.CollectionModel;
-import com.example.chicharo.clean_ambar.Activities.Collection_Objects_Activity;
+//import com.example.chicharo.clean_ambar.Activities.Collection_Objects_Activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -116,7 +116,7 @@ public class Fragmento_Collection extends Fragment {
                         adapter = new CustomListAdapter(getActivity(), movieList);
                         listView.setAdapter(adapter);
 
-                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 //Log.d("FragmentoCollection","bai bai");
@@ -124,7 +124,7 @@ public class Fragmento_Collection extends Fragment {
                                 Intent Collection_Objects_Activity = new Intent(getActivity().getApplicationContext(), Collection_Objects_Activity.class);
                                 startActivity(Collection_Objects_Activity);
                             }
-                        });
+                        });*/
 
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
