@@ -6,16 +6,20 @@
     android:padding="10dp"
     >
 
-    <GridView
-        android:id="@+id/gridCollectionObjects"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_collection_befGrid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:clickable="true"
+        android:elevation="23.3sp"
         android:columnWidth="200dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
         android:horizontalSpacing="35dp"
-        android:verticalSpacing="30dp"
+        android:verticalSpacing="100dp"
         android:gravity="center"
         android:background="#FFF"
         />
+    <!-- Checa las propiedades, son de Grid View -->
+    <!-- clickable no hace nada :c -->
 </RelativeLayout>

@@ -5,12 +5,15 @@ package com.example.chicharo.clean_ambar.Fragments;
  */
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.example.chicharo.clean_ambar.R;
+import com.example.chicharo.clean_ambar.adapter.Collection_Objects_Recycler;
 import com.example.chicharo.clean_ambar.adapter.GridCollectionObjectsAdapter;
 import com.example.chicharo.clean_ambar.models.Collection_Object;
 
@@ -21,9 +24,9 @@ import java.util.List;
  * Created by chicharo on 5/12/14.
  */
 public class Collection_Objects_Fragment extends android.support.v4.app.Fragment{
-
-    private GridCollectionObjectsAdapter adapter;
-    public List<Collection_Object> models = new ArrayList<Collection_Object>();
+    private Collection_Objects_Recycler adapter;
+    public ArrayList<Collection_Object> models = new ArrayList<Collection_Object>();
+    private LinearLayoutManager mLayoutManager;
 
     public static Collection_Objects_Fragment newInstance(int position) {
 
@@ -42,6 +45,15 @@ public class Collection_Objects_Fragment extends android.support.v4.app.Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.collectionobjects_view,container,false);
 
+        RecyclerView recList = (RecyclerView) v.findViewById(R.id.recycler_collection_befGrid);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recList.setHasFixedSize(false);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        recList.setLayoutManager(mLayoutManager);
+
         Collection_Object model = new Collection_Object("Marina", 23, 45,"http://media-cache-ak0.pinimg.com/736x/97/fe/02/97fe027303d1a92202fd0a47a2450143.jpg");
         Collection_Object model2 = new Collection_Object("Diamods", 76, 87,"http://media-cache-ak0.pinimg.com/736x/97/fe/02/97fe027303d1a92202fd0a47a2450143.jpg");
         Collection_Object model3 = new Collection_Object("Froot", 11, 7,"http://media-cache-ak0.pinimg.com/736x/97/fe/02/97fe027303d1a92202fd0a47a2450143.jpg");
@@ -52,9 +64,8 @@ public class Collection_Objects_Fragment extends android.support.v4.app.Fragment
         models.add(model3);
         models.add(model4);
 
-        GridView gridCollectionObjects = (GridView) v.findViewById(R.id.gridCollectionObjects);
-        adapter = new GridCollectionObjectsAdapter(getActivity(),models);
-        gridCollectionObjects.setAdapter(adapter);
+        adapter = new Collection_Objects_Recycler(getActivity(),models);
+        recList.setAdapter(adapter);
 
         return v;
     }

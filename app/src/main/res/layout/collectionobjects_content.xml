@@ -1,76 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@color/backgroundCollectionObject">
-    <!-- Thumbnail Image -->
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/thumbnailCollectionObject"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        />
-    <!-- Movie Title -->
-    <!--Hay que poner máximo de caracteres a lo que se va a poner en el título porque si no sale en dos filas el texto-->
-    <TextView
-        android:id="@+id/titleCollectionObjectObject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/thumbnailCollectionObject"
-        android:layout_toEndOf="@id/thumbnailCollectionObject"
-        android:textColor="@color/titleCollectionObjec"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:textColorLink="#000"
-        />
-    <TextView
-        android:id="@+id/humIcomoonCollectionObjectObject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_below="@id/titleCollectionObjectObject"
-        android:layout_toRightOf="@id/thumbnailCollectionObject"
-        android:layout_toEndOf="@id/thumbnailCollectionObject"
-        android:textColor="@color/humIcomoonCollectionObject"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/humCollectionObjectObject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_below="@id/titleCollectionObjectObject"
-        android:layout_toRightOf="@id/humIcomoonCollectionObjectObject"
-        android:layout_toEndOf="@id/humIcomoonCollectionObjectObject"
-        android:textColor="@color/humCollectionObject"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/tempIcomoonCollectionObjectObject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_below="@id/humCollectionObjectObject"
-        android:layout_toRightOf="@id/thumbnailCollectionObject"
-        android:layout_toEndOf="@id/thumbnailCollectionObject"
-        android:textColor="@color/tempIcomoonCollectionObject"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/tempCollectionObjectObject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_below="@id/humCollectionObjectObject"
-        android:layout_toRightOf="@id/tempIcomoonCollectionObjectObject"
-        android:layout_toEndOf="@id/tempIcomoonCollectionObjectObject"
-        android:textColor="@color/tempCollectionObject"
-        android:textSize="30sp"
-        />
-    <!-- Rating -->
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    card_view:cardCornerRadius="4dp"
+    android:layout_margin="5dp">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@color/backgroundCollectionObject">
+        <!-- Thumbnail Image -->
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/thumbnailCollectionObject"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            />
+        <!-- Movie Title -->
+        <!--Hay que poner máximo de caracteres a lo que se va a poner en el título porque si no sale en dos filas el texto-->
+        <TextView
+            android:id="@+id/titleCollectionObjectObject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/thumbnailCollectionObject"
+            android:layout_toEndOf="@id/thumbnailCollectionObject"
+            android:textColor="@color/titleCollectionObjec"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColorLink="#000"
+            />
+        <TextView
+            android:id="@+id/humIcomoonCollectionObjectObject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/titleCollectionObjectObject"
+            android:layout_toRightOf="@id/thumbnailCollectionObject"
+            android:layout_toEndOf="@id/thumbnailCollectionObject"
+            android:textColor="@color/humIcomoonCollectionObject"
+            android:textSize="30sp"
+            />
+        <TextView
+            android:id="@+id/humCollectionObjectObject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_below="@id/titleCollectionObjectObject"
+            android:layout_toRightOf="@id/humIcomoonCollectionObjectObject"
+            android:layout_toEndOf="@id/humIcomoonCollectionObjectObject"
+            android:textColor="@color/humCollectionObject"
+            android:textSize="30sp"
+            />
+        <TextView
+            android:id="@+id/tempIcomoonCollectionObjectObject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/humCollectionObjectObject"
+            android:layout_toRightOf="@id/thumbnailCollectionObject"
+            android:layout_toEndOf="@id/thumbnailCollectionObject"
+            android:textColor="@color/tempIcomoonCollectionObject"
+            android:textSize="30sp"
+            />
+        <TextView
+            android:id="@+id/tempCollectionObjectObject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_below="@id/humCollectionObjectObject"
+            android:layout_toRightOf="@id/tempIcomoonCollectionObjectObject"
+            android:layout_toEndOf="@id/tempIcomoonCollectionObjectObject"
+            android:textColor="@color/tempCollectionObject"
+            android:textSize="30sp"
+            />
+        <!-- Rating -->
 
-</RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

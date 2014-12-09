@@ -7,28 +7,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.chicharo.clean_ambar.R;
+import com.example.chicharo.clean_ambar.app.AppController;
+import com.example.chicharo.clean_ambar.models.CollectionModel;
+import com.example.chicharo.clean_ambar.models.Collection_Object;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by chicharo on 8/12/14.
+ * CAMBIA EL ORDEN
  */
 public class Collection_Recycler extends RecyclerView.Adapter<Collection_Recycler.viewHolder> {
-    private ArrayList<String> mDataset;
+    private List<CollectionModel> mDataset;
+    ImageLoader imageLoader;
+    CollectionModel m;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public Collection_Recycler(ArrayList<String> myDataset) {
-        mDataset = myDataset;
+    public Collection_Recycler(List<CollectionModel> myDataset) {
+        this.mDataset = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
     public Collection_Recycler.viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.collection_content_recycler, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.collectionlist_content, parent, false);
         // set the view's size, margins, paddings and layout parameters
         viewHolder vh = new viewHolder(v);
+        if (imageLoader == null)
+            imageLoader = AppController.getInstance().getImageLoader();
         return vh;
     }
 
@@ -37,41 +48,60 @@ public class Collection_Recycler extends RecyclerView.Adapter<Collection_Recycle
     public void onBindViewHolder(viewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        final String name = mDataset.get(position);
-        holder.txtHeader.setText(mDataset.get(position));
-        holder.txtHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                remove(name);
-            }
-        });
+        //m = mDataset.get(position);
+        holder.thumbNail.setImageUrl("http://lax102.fm/wp-content/uploads/2014/11/Marina-and-the-Diamonds-Froot-2014-1000x1000-Official.jpg", imageLoader);
+        // title
+        //holder.title.setText(m.getTitle());
+        holder.title.setText("Froot");
 
-        holder.txtFooter.setText("Footer: " + mDataset.get(position));
+        // rating
+        //holder.rating.setText("Rating: " + String.valueOf(m.getRating()));
+        holder.rating.setText("5/5");
+
+        // genre
+        /*String genreStr = "";
+        for (String str : m.getGenre()) {
+            genreStr += str + ", ";
+        }
+        genreStr = genreStr.length() > 0 ? genreStr.substring(0,genreStr.length() - 2) : genreStr;
+        //holder.genre.setText(genreStr);*/
+        holder.genre.setText("MK");
+
+        // release year
+        //holder.year.setText(String.valueOf(m.getYear()));
+        holder.year.setText("2014");
 
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return 15;
+        //mDataset.size();
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        public TextView txtHeader;
-        public TextView txtFooter;
+        NetworkImageView thumbNail;
+        TextView title;
+        TextView rating;
+        TextView genre;
+        TextView year;
 
         public viewHolder(View vv){
             super(vv);
-            txtHeader = (TextView) vv.findViewById(R.id.firstLine);
-            txtFooter = (TextView) vv.findViewById(R.id.secondLine);
+            thumbNail = (NetworkImageView)vv.findViewById(R.id.thumbnailCollection);
+            title = (TextView) vv.findViewById(R.id.title);
+            rating = (TextView) vv.findViewById(R.id.rating);
+            genre = (TextView) vv.findViewById(R.id.genre);
+            year = (TextView) vv.findViewById(R.id.releaseYear);
         }
     }
-    public void add(int position, String item) {
+    public void add(int position, CollectionModel item) {
         mDataset.add(position, item);
         notifyItemInserted(position);
     }
 
-    public void remove(String item) {
-        int position = mDataset.indexOf(item);
+    public void remove(CollectionModel item) {
+        int position = mDataset.indexOf(item); // a ver si funciona
         mDataset.remove(position);
         notifyItemRemoved(position);
     }

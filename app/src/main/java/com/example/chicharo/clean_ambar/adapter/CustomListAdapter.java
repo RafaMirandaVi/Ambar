@@ -61,8 +61,8 @@ public class CustomListAdapter extends BaseAdapter {
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
 
-        NetworkImageView thumbNail = (NetworkImageView) convertView
-                .findViewById(R.id.thumbnailCollection);
+        /*NetworkImageView thumbNail = (NetworkImageView) convertView
+                .findViewById(R.id.thumbnailCollection);*/
         TextView title = (TextView) convertView.findViewById(R.id.title);
         TextView rating = (TextView) convertView.findViewById(R.id.rating);
         TextView genre = (TextView) convertView.findViewById(R.id.genre);
@@ -72,7 +72,7 @@ public class CustomListAdapter extends BaseAdapter {
         CollectionModel m = movieItems.get(position);
 
         // thumbnail image
-        thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
+        //thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
 
         // title
         title.setText(m.getTitle());
