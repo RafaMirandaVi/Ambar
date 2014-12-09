@@ -5,8 +5,7 @@
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/thumbnailCollection"
         android:layout_width="80dp"
-        android:layout_height="80dp"
-        />
+        android:layout_height="80dp"/>
     <!-- Movie Title -->
     <!-- Las dimensiones ponlas desde dimens -->
     <TextView

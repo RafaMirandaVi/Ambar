@@ -27,7 +27,6 @@ import java.util.List;
 public class GridCollectionObjectsAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
-    private String name;
     private List<Collection_Object> movieItems;
     ImageLoader imageLoader; // Y si navegan muy rápido? Creo que se puede confundir por el requestQueue. La verdad no, pero no c.
 
