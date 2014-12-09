@@ -56,7 +56,7 @@ public class MyActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         sessionM = new SessionManagement(getApplicationContext());
         sessionM.checkLogin(); //Solo hace el redireccionamiento
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
         // load slide menu items
         mTitle = mDrawerTitle = getTitle();

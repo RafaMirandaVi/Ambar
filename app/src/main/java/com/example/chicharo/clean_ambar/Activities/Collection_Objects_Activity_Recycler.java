@@ -1,16 +1,17 @@
 package com.example.chicharo.clean_ambar.Activities;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.example.chicharo.clean_ambar.R;
-import com.example.chicharo.clean_ambar.adapter.Collection_Card_Recycler;
+//import com.example.chicharo.clean_ambar.adapter.Collection_Card_Recycler;
 import com.example.chicharo.clean_ambar.adapter.Collection_Objects_Recycler;
 import com.example.chicharo.clean_ambar.models.Collection_Object;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by chicharo on 8/12/14.
@@ -22,9 +23,9 @@ public class Collection_Objects_Activity_Recycler extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.collection_view_recycler); //Agarrando la que no, pero wueno
+        setContentView(R.layout.object_view); //Agarrando la que no, pero wueno
 
-        RecyclerView recList = (RecyclerView)findViewById(R.id.recycler_collection);
+        RecyclerView recList = (RecyclerView)findViewById(R.id.recycler_collection_befGrid);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView

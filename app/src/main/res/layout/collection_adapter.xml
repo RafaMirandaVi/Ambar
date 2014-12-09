@@ -6,13 +6,15 @@
     android:layout_height="match_parent"
     card_view:cardCornerRadius="4dp"
     android:layout_margin="5dp">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#FFF">
     <!-- Thumbnail Image -->
-    <com.android.volley.toolbox.NetworkImageView
+    <com.example.chicharo.clean_ambar.util.NetworkImageViewCircle
         android:id="@+id/thumbnailCollection"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:padding="3dp"
         />
     <!-- Movie Title -->
     <!-- Las dimensiones ponlas desde dimens -->

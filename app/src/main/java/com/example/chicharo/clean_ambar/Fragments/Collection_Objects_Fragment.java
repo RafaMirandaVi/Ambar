@@ -3,22 +3,18 @@ package com.example.chicharo.clean_ambar.Fragments;
 /**
  * Created by chicharo on 7/12/14.
  */
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.adapter.Collection_Objects_Recycler;
-import com.example.chicharo.clean_ambar.adapter.GridCollectionObjectsAdapter;
 import com.example.chicharo.clean_ambar.models.Collection_Object;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by chicharo on 5/12/14.
@@ -43,7 +39,7 @@ public class Collection_Objects_Fragment extends android.support.v4.app.Fragment
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View v = inflater.inflate(R.layout.collectionobjects_view,container,false);
+        final View v = inflater.inflate(R.layout.object_view,container,false);
 
         RecyclerView recList = (RecyclerView) v.findViewById(R.id.recycler_collection_befGrid);
         // use this setting to improve performance if you know that changes

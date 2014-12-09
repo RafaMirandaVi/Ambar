@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
-    <ListView
-        android:id="@+id/listCollection"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:divider="@color/list_collection_divider"
-        android:dividerHeight="1dp"
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_collection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
-    <!--android:dividerHeight="2dp"-->
+    <!--android:dividerHeight="2dp" viene de ListView-->
 </RelativeLayout>

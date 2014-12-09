@@ -16,7 +16,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 
 public class CustomListAdapter extends BaseAdapter {
 
@@ -56,7 +55,7 @@ public class CustomListAdapter extends BaseAdapter {
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.collectionlist_content, null);
+            convertView = inflater.inflate(R.layout.collection_adapter, null);
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();

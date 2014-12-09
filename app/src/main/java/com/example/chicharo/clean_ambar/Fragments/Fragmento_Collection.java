@@ -1,6 +1,5 @@
 package com.example.chicharo.clean_ambar.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,7 +21,6 @@ import com.example.chicharo.clean_ambar.Activities.MyActivity;
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.adapter.Collection_Recycler;
 import com.example.chicharo.clean_ambar.util.SessionManagement;
-import com.example.chicharo.clean_ambar.adapter.CustomListAdapter;
 import com.example.chicharo.clean_ambar.app.AppController;
 import com.example.chicharo.clean_ambar.models.CollectionModel;
 //import com.example.chicharo.clean_ambar.Activities.Collection_Objects_Activity;
@@ -69,7 +66,7 @@ public class Fragmento_Collection extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View v = inflater.inflate(R.layout.collection_view_recycler, container, false);
+        final View v = inflater.inflate(R.layout.collection_view, container, false);
         // Poner datos de usuario
         //headerSalas = (TextView)v.findViewById(R.id.textViewSalasHeader);
         sessionM = new SessionManagement(getActivity().getApplicationContext());

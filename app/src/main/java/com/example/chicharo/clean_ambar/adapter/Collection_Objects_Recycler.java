@@ -1,9 +1,10 @@
 package com.example.chicharo.clean_ambar.adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder.*;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.app.AppController;
 import com.example.chicharo.clean_ambar.models.Collection_Object;
+import com.example.chicharo.clean_ambar.util.NetworkImageViewCircle;
 
 import java.util.ArrayList;
 
@@ -39,7 +41,7 @@ public class Collection_Objects_Recycler extends RecyclerView.Adapter<Collection
     @Override
     public Collection_Objects_Recycler.viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.collectionobjects_content, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.object_adapter, parent, false);
         // set the view's size, margins, paddings and layout parameters
         viewHolder vh = new viewHolder(v);
         if (imageLoader == null)
@@ -74,7 +76,7 @@ public class Collection_Objects_Recycler extends RecyclerView.Adapter<Collection
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        NetworkImageView img;
+        NetworkImageViewCircle img;
         TextView title;
         TextView temperaturaIcomoon;
         TextView humedadIcomoon;
@@ -83,7 +85,7 @@ public class Collection_Objects_Recycler extends RecyclerView.Adapter<Collection
 
         public viewHolder(View vv){
             super(vv);
-             img = (NetworkImageView)vv.findViewById(R.id.thumbnailCollectionObject);
+             img = (NetworkImageViewCircle)vv.findViewById(R.id.thumbnailCollectionObject);
              title = (TextView)vv.findViewById(R.id.titleCollectionObjectObject);
              temperaturaIcomoon = (TextView)vv.findViewById(R.id.tempIcomoonCollectionObjectObject);
              humedadIcomoon = (TextView)vv.findViewById(R.id.humIcomoonCollectionObjectObject);
