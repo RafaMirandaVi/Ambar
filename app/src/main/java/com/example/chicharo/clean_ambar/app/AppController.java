@@ -6,6 +6,7 @@ package com.example.chicharo.clean_ambar.app;
 import com.example.chicharo.clean_ambar.util.LruBitmapCache;
 import android.app.Application;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -53,6 +54,7 @@ public class AppController extends Application {
     }
 
     public <T> void addToRequestQueue(Request<T> req) {
+        Log.d("REQ Q", "adding reqest queue");
         req.setTag(TAG);
         getRequestQueue().add(req);
     }
