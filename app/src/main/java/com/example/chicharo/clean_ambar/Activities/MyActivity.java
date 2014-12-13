@@ -8,6 +8,7 @@ import com.example.chicharo.clean_ambar.models.NavDrawerItem;
 import com.example.chicharo.clean_ambar.adapter.NavDrawerListAdapter;
 import com.example.chicharo.clean_ambar.util.SessionManagement;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -34,7 +35,7 @@ import java.util.ArrayList;
 public class MyActivity extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;  //Exactamente qué eres?
+    private ActionBarDrawerToggle mDrawerToggle;
 
     // nav drawer title
     private CharSequence mDrawerTitle;
@@ -119,7 +120,6 @@ public class MyActivity extends FragmentActivity {
             // on first time display view for first nav item
             displayView(0);
         }
-
 
     }
 

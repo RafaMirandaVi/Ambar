@@ -59,6 +59,10 @@ public class AppController extends Application {
         getRequestQueue().add(req);
     }
 
+    public <T> int getSequenceNum() {
+        return getRequestQueue().getSequenceNumber();
+    }
+
     public void cancelPendingRequests(Object tag) {
         if (mRequestQueue != null) {
             mRequestQueue.cancelAll(tag);
