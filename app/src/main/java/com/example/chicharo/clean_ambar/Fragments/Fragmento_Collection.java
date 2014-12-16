@@ -73,10 +73,10 @@ public class Fragmento_Collection extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.collection_view_swipe, container, false);
 
-        pDialog = new ProgressDialog(getActivity());
+        //pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
-        pDialog.show();
+        //pDialog.setMessage("Loading...");
+        //pDialog.show();
 
         recList= (RecyclerView) v.findViewById(R.id.recycler_collection_swipe);
         // use this setting to improve performance if you know that changes
@@ -90,13 +90,79 @@ public class Fragmento_Collection extends Fragment{
         recList.setAdapter(mAdapter);
 
         // Creating volley request obj
-        movieReq = new JsonArrayRequest(url,
+        movieReq = fillMovie();
+        AppController.getInstance().addToRequestQueue(movieReq);
+        // Done with volley
+
+        //MyGestureListener gestureListener = new MyGestureListener(getActivity());
+        swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipe_container_collection);
+
+        final Runnable refreshing = new Runnable(){
+            public void run(){
+                try {
+                    // TODO : isRefreshing should be attached to your data request status
+                    //isRefreshing()
+                    if(isRefreshing(2)){
+                        //Log.d("isRefreshing", "2 y comprobando");
+                        // re run the verification after 1/2 second
+                        handler.postDelayed(this, 500);
+                    }else{
+                        // stop the animation after the data is fully loaded
+                        Log.d("isRefreshing","stopAmimation");
+                        swipeRefreshLayout.setRefreshing(false);
+                        // TODO : update your list with the new data
+                    }
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                isRefreshing(1);
+                // TODO : request data here
+                movieReq = fillMovie();
+                AppController.getInstance().addToRequestQueue(movieReq);
+                // our swipeRefreshLayout needs to be notified when the data is returned in order for it to stop the animation
+                handler.post(refreshing);
+
+            }
+        });
+        // sets the colors used in the refresh animation
+        swipeRefreshLayout.setColorSchemeResources(R.color.humidity, R.color.temperature,
+                R.color.primary, R.color.tempIcomoonCollectionObject);
+
+        recList.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) { // Sabemos que no es el mejor método hablando de performance, hay que mejorarlo.
+                super.onScrolled(recyclerView, dx, dy);
+                y=y+dy;
+                //Log.d("onScrolled",String.valueOf(y));
+                swipeRefreshLayout.setEnabled(y==0);
+            }
+        });
+        // Adding request to request queuea
+
+        return v;
+    }
+
+    public void onStop(){
+        super.onStop();
+        hidePDialog();
+    }
+
+    public JsonArrayRequest fillMovie(){
+        JsonArrayRequest movieReqTest = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
+                        Log.d("onResponse", response.toString());
                         hidePDialog();
-
+                        isRefreshing(0);
                         // Parsing json
                         for (int i = 0; i < response.length(); i++) {
                             try {
@@ -128,6 +194,7 @@ public class Fragmento_Collection extends Fragment{
 
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
+                        //isRefreshing(0);
                         mAdapter.notifyDataSetChanged();
                     }
                 }, new Response.ErrorListener() {
@@ -138,64 +205,8 @@ public class Fragmento_Collection extends Fragment{
 
             }
         });
-        AppController.getInstance().addToRequestQueue(movieReq);
-        // Done with volley
 
-        //MyGestureListener gestureListener = new MyGestureListener(getActivity());
-        swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipe_container_collection);
-
-        final Runnable refreshing = new Runnable(){
-            public void run(){
-                try {
-                    // TODO : isRefreshing should be attached to your data request status
-                    //isRefreshing()
-                    if(isRefreshing()){
-                        // re run the verification after 1/2 second
-                        handler.postDelayed(this, 500);
-                    }else{
-                        // stop the animation after the data is fully loaded
-                        swipeRefreshLayout.setRefreshing(false);
-                        // TODO : update your list with the new data
-                    }
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
-            @Override
-            public void onRefresh() {
-                AppController.getInstance().addToRequestQueue(movieReq);
-                // TODO : request data here
-                // our swipeRefreshLayout needs to be notified when the data is returned in order for it to stop the animation
-                handler.post(refreshing);
-            }
-        });
-        // sets the colors used in the refresh animation
-        swipeRefreshLayout.setColorSchemeResources(R.color.humidity, R.color.temperature,
-                R.color.primary, R.color.tempIcomoonCollectionObject);
-
-        recList.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) { // Sabemos que no es el mejor método hablando de performance, hay que mejorarlo.
-                super.onScrolled(recyclerView, dx, dy);
-                y=y+dy;
-                //Log.d("onScrolled",String.valueOf(y));
-                swipeRefreshLayout.setEnabled(y==0);
-            }
-        });
-        // Adding request to request queuea
-
-        return v;
-    }
-
-    public void onStop(){
-        super.onStop();
-        hidePDialog();
-        Log.d("onStop", "hidePDialog");
+        return movieReqTest;
     }
 
 
@@ -205,10 +216,19 @@ public class Fragmento_Collection extends Fragment{
             pDialog = null;
         }
     }
-
-    public boolean isRefreshing(){ // Por qué fuera sí funciona?
-        Log.d("getSequenceNum",String.valueOf(AppController.getInstance().getSequenceNum()));
-        return false;
+    boolean is=true;
+    public boolean isRefreshing(int a){ // Por qué fuera sí funciona?
+        // REQUEST = 1, RESPONSE = 0, ISREFRESHING = 2
+        //Log.d("isRefreshing",String.valueOf(a));
+        if(a!=2) {
+            if (a==0){
+                is=false;
+                Log.d("isRefreshing","False, 0");
+            }else{
+                is=true;
+            }
+        }
+        return is;
     }
 
 }
