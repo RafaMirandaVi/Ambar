@@ -1,44 +1,63 @@
 package com.example.chicharo.clean_ambar.Activities;
 
-import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.CardView;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Toast;
 
 import com.example.chicharo.clean_ambar.R;
-//import com.example.chicharo.clean_ambar.adapter.Collection_Card_Recycler;
 import com.example.chicharo.clean_ambar.adapter.Collection_Objects_Recycler;
 import com.example.chicharo.clean_ambar.models.Collection_Object;
 import com.example.chicharo.clean_ambar.util.MyGestureListener;
+import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 
 /**
  * Created by chicharo on 8/12/14.
  */
-public class Collection_Objects_Activity_Recycler extends Activity {
+public class ObjectsActivity extends ActionBarActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     public ArrayList<Collection_Object> models = new ArrayList<Collection_Object>();
     public GestureDetector gesturedetector;
     private SwipeRefreshLayout swipeRefreshLayout;
     private Handler handler = new Handler(); //Os imported [SwipeLayout]
+    Toolbar toolbar;
 
-    //@Override [SwipeLayout]
+    @Override //[SwipeLayout]
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.object_view_swipe); //[SwipeLayout]
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set an OnMenuItemClickListener to handle menu item clicks
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                // Handle the menu item
+                Log.d("onMenuItemClick Toolbar",String.valueOf(item));
+                return true;
+            }
+        });
+
+        // Inflate a menu to be displayed in the toolbar
+        toolbar.inflateMenu(R.menu.toolbar_back);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // AY TE AMO TE AMO
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         final RecyclerView recList = (RecyclerView)findViewById(R.id.recycler_collection_befGrid_swipe);
 

@@ -12,14 +12,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.example.chicharo.clean_ambar.Activities.Collection_Objects_Activity_Recycler;
+import com.example.chicharo.clean_ambar.Activities.ObjectsActivity;
 import com.example.chicharo.clean_ambar.util.NetworkImageViewCircle;
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.app.AppController;
 import com.example.chicharo.clean_ambar.models.CollectionModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by chicharo on 8/12/14.
@@ -84,7 +83,7 @@ public class Collection_Recycler extends RecyclerView.Adapter<Collection_Recycle
             @Override
             public void onClick(View v) {
                 Log.d("Adapter","onClick");
-                Intent i = new Intent(myActivity,Collection_Objects_Activity_Recycler.class);
+                Intent i = new Intent(myActivity,ObjectsActivity.class);
                 myActivity.startActivity(i);
             }
         });

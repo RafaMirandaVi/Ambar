@@ -1,10 +1,8 @@
 package com.example.chicharo.clean_ambar.Fragments;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -26,12 +22,15 @@ import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.adapter.Collection_Recycler;
 import com.example.chicharo.clean_ambar.app.AppController;
 import com.example.chicharo.clean_ambar.models.CollectionModel;
-import com.example.chicharo.clean_ambar.util.MyGestureListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+
+/** requestLayout() improperly called by android.widget.TextView{3e73999e V.ED.... .....AID 147,0-395,144 #7f080027 app:id/title} during second layout pass: posting in next frame
+ * HAY QUE ARREGLAR ESO
+ * **/
 
 public class Fragmento_Collection extends Fragment{
 
@@ -70,6 +69,7 @@ public class Fragmento_Collection extends Fragment{
 
     private static final String url = "http://api.androidhive.info/json/movies.json";
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.collection_view_swipe, container, false);
 
@@ -183,13 +183,19 @@ public class Fragmento_Collection extends Fragment{
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) { // Sabemos que no es el mejor método hablando de performance, hay que mejorarlo.
                 super.onScrolled(recyclerView, dx, dy);
                 y=y+dy;
-                Log.d("onScrolled",String.valueOf(y));
+                //Log.d("onScrolled",String.valueOf(y));
                 swipeRefreshLayout.setEnabled(y==0);
             }
         });
         // Adding request to request queuea
 
         return v;
+    }
+
+    public void onStop(){
+        super.onStop();
+        hidePDialog();
+        Log.d("onStop", "hidePDialog");
     }
 
 

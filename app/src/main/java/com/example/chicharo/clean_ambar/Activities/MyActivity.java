@@ -2,19 +2,14 @@ package com.example.chicharo.clean_ambar.Activities;
 
 
 import com.example.chicharo.clean_ambar.Fragments.Fragment_Pager;
-import com.example.chicharo.clean_ambar.Fragments.HomeFragment;
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.models.NavDrawerItem;
 import com.example.chicharo.clean_ambar.adapter.NavDrawerListAdapter;
 import com.example.chicharo.clean_ambar.util.SessionManagement;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-//import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-//import android.support.v4.app.ActionBarDrawerToggle;
-//import android.support.v4.widget.DrawerLayout;
 
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -68,7 +63,7 @@ public class MyActivity extends ActionBarActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // load slide menu items
+                // load slide menu items
         mTitle = mDrawerTitle = getTitle();
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
@@ -103,8 +98,8 @@ public class MyActivity extends ActionBarActivity {
         mDrawerList.setAdapter(adapter);
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // AY TE AMO TE AMO
-        getSupportActionBar().setHomeButtonEnabled(true); // Qué hace?
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true); // AY TE AMO TE AMO
+        //getSupportActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);/* {
             public void onDrawerClosed(View view) {
@@ -152,11 +147,11 @@ public class MyActivity extends ActionBarActivity {
                 fragment = new Fragment_Pager();
                 break;
             case 1:
-                Intent Collection_Activity = new Intent(this, Collection_Objects_Activity_Recycler.class);
+                Intent Collection_Activity = new Intent(this, ObjectsActivity.class);
                 startActivity(Collection_Activity);
                 break;
             case 2:
-                Intent Collection_Objects = new Intent(this, Collection_Objects_Activity_Recycler.class);
+                Intent Collection_Objects = new Intent(this, ObjectsActivity.class);
                 startActivity(Collection_Objects);
                 break;
             case 3:
@@ -214,6 +209,7 @@ public class MyActivity extends ActionBarActivity {
         menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu); //Qué hace esto? :0
     }*/
+
 
     @Override
     public void setTitle(CharSequence title) {
