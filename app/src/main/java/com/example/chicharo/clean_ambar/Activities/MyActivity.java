@@ -2,22 +2,21 @@ package com.example.chicharo.clean_ambar.Activities;
 
 
 import com.example.chicharo.clean_ambar.Fragments.Fragment_Pager;
-import com.example.chicharo.clean_ambar.Fragments.HomeFragment;
+import com.example.chicharo.clean_ambar.Fragments.Fragmento_Collection;
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.models.NavDrawerItem;
 import com.example.chicharo.clean_ambar.adapter.NavDrawerListAdapter;
 import com.example.chicharo.clean_ambar.util.SessionManagement;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.widget.DrawerLayout;
 
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,15 +25,26 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import java.util.ArrayList;
 
+
+//Prueba de toolbar drawer fragment
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.widget.SearchView;
+
 /**
  * RECUERDA QUE AÑADIMOS EL JAR ANDOROID SUPPORT V13 DE EXTRAS/SUPPORT/
  * Introduce the user to the drawer at first use
  */
 
-public class MyActivity extends FragmentActivity {
+public class MyActivity extends ActionBarActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;  //Exactamente qué eres?
+    private ActionBarDrawerToggle mDrawerToggle;
+
+    //instanciamos para hacer llegar el query por sus métodos
+    Fragment_Pager fragment_pager = new Fragment_Pager();
 
     // nav drawer title
     private CharSequence mDrawerTitle;
@@ -50,6 +60,7 @@ public class MyActivity extends FragmentActivity {
     private NavDrawerListAdapter adapter;
 
     SessionManagement sessionM;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +69,10 @@ public class MyActivity extends FragmentActivity {
         sessionM.checkLogin(); //Solo hace el redireccionamiento
         setContentView(R.layout.main_activity);
 
-        // load slide menu items
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+                // load slide menu items
         mTitle = mDrawerTitle = getTitle();
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
@@ -80,14 +94,10 @@ public class MyActivity extends FragmentActivity {
         // Find People
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         // Photos
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1),true, "22"));
         // Communities, Will add a counter here
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
         // Pages
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-        // What's hot, We  will add a counter here
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
         // Recycle the typed array
         navMenuIcons.recycle(); //Qué hace?
@@ -97,33 +107,28 @@ public class MyActivity extends FragmentActivity {
         mDrawerList.setAdapter(adapter);
 
 
-        getActionBar().setDisplayHomeAsUpEnabled(true); // AY TE AMO TE AMO
-        getActionBar().setHomeButtonEnabled(true); // Qué hace?
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true); // AY TE AMO TE AMO
+        //getSupportActionBar().setHomeButtonEnabled(true);
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_drawer, //nav menu toggle icon
-                R.string.app_name, // nav drawer open - description for accessibility
-                R.string.app_name // nav drawer close - description for accessibility
-        ) {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);/* {
             public void onDrawerClosed(View view) {
-                getActionBar().setTitle(mTitle);
+                getSupportActionBar().setTitle(mTitle);
                 // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(mDrawerTitle);
+                getSupportActionBar().setTitle(mDrawerTitle);
                 // calling onPrepareOptionsMenu() to hide action bar icons
                 invalidateOptionsMenu();
             }
-        };
+        };*/
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         if (savedInstanceState == null) {
             // on first time display view for first nav item
             displayView(0);
         }
-
 
     }
 
@@ -151,28 +156,17 @@ public class MyActivity extends FragmentActivity {
                 fragment = new Fragment_Pager();
                 break;
             case 1:
-                Intent Collection_Activity = new Intent(this, Collection_Objects_Activity_Recycler.class);
+                Intent Collection_Activity = new Intent(this, ObjectsActivity.class);
                 startActivity(Collection_Activity);
                 break;
             case 2:
-                Intent Collection_Objects = new Intent(this, Collection_Objects_Activity_Recycler.class);
+                Intent Collection_Objects = new Intent(this, ObjectsActivity.class);
                 startActivity(Collection_Objects);
                 break;
             case 3:
-                fragment = new HomeFragment();
-                break;
-            case 4:
-                fragment = new HomeFragment();
-                break;
-            case 5:
-                fragment = new HomeFragment();
-                break;
-            case 6:
                 //fragment = new HomeFragment(); //hacer fragmento en blanco o no poner nada jé
                 finish();
                 sessionM.logoutUser();
-                break;
-
             default:
                 break;
         }
@@ -187,13 +181,14 @@ public class MyActivity extends FragmentActivity {
             mDrawerList.setSelection(position);
             setTitle(navMenuTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
+            //Log.d("fPager",String.valueOf(fragment.getView().getId()));
         } else {
             // error in creating fragment
             Log.e("MainActivity", "Error in creating fragment");
         }
     }
 
-
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -223,12 +218,13 @@ public class MyActivity extends FragmentActivity {
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
         menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu); //Qué hace esto? :0
-    }
+    }*/
+
 
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        getActionBar().setTitle(mTitle);
+        getSupportActionBar().setTitle(mTitle);
     }
 
     @Override
@@ -243,10 +239,5 @@ public class MyActivity extends FragmentActivity {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    public void onDestroy(){
-        Log.d("MYACTIVITY","onDestroy");
-        super.onDestroy();
     }
 }

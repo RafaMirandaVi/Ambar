@@ -1,0 +1,16 @@
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_container_collection"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_collection_swipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <!--android:dividerHeight="2dp" viene de ListView-->
+    </RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

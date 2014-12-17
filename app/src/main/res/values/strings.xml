@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Slider Menu</string>
+    <string name="app_name">Ambar</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Slider Menu Opened</string>
@@ -12,9 +12,6 @@
         <item >Home</item>
         <item >Find People</item>
         <item >Photos</item>
-        <item >Communities</item>
-        <item >Pages</item>
-        <item >What\'s Hot</item>
         <item >Log out</item>
     </string-array>
 
@@ -23,14 +20,14 @@
     <array name="nav_drawer_icons">
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_people</item>
-        <item>@drawable/ic_photos</item>
         <item>@drawable/ic_communities</item>
         <item>@drawable/ic_pages</item>
-        <item>@drawable/ic_whats_hot</item>
-        <item>@drawable/ic_people</item>
     </array>
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+
+    <!--Menu-->
+    <string name="back">Atrás</string>
 
 </resources>

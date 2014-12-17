@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     card_view:cardCornerRadius="4dp"
-    android:layout_margin="5dp">
+    android:layout_margin="20dp">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#FFF">
@@ -28,7 +28,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:textStyle="bold"
-        android:textSize="22dp"/>
+        android:textSize="22sp"
+        android:textColor="#000"/>
     <!-- Rating -->
     <TextView
         android:id="@+id/rating"
@@ -39,7 +40,7 @@
         android:layout_below="@id/title"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:textSize="18dp"
+        android:textSize="18sp"
         />
     <!-- Genre -->
     <TextView
@@ -52,7 +53,7 @@
         android:layout_marginStart="10dp"
         android:layout_below="@id/rating"
         android:textColor="@color/genre"
-        android:textSize="18dp"
+        android:textSize="18sp"
         />
     <!-- Release Year -->
     <TextView

@@ -35,4 +35,6 @@
             <!--Icomoon-->
         <color name="humIcomoonCollectionObject">#9C0000</color>
         <color name="tempIcomoonCollectionObject">#0C758E</color>
+
+    <color name="opaque_black">#29000000</color>
 </resources>
