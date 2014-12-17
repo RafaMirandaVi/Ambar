@@ -36,14 +36,6 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
     private List<android.support.v4.app.Fragment> listaFragments;
     private PagerAdapter mPagerAdapter;
 
-    public void setQuery(String query){
-        if(currentFragment == 0){
-            //fragmento_collection.setQuery(query);
-        }else{
-            //collection_objects_fragment.setQuery(query);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.pager_fragment, container, false);

@@ -3,6 +3,7 @@ package com.example.chicharo.clean_ambar.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.LabeledIntent;
 import android.os.Handler;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +37,7 @@ public class Collection_Recycler extends RecyclerView.Adapter<Collection_Recycle
     ImageLoader imageLoader;
     CollectionFilter collectionFilter;
     private Handler handler = new Handler();
+    CollectionModel m;
     boolean loadedMDadaset;
 
     // Provide a suitable constructor (depends on the kind of dataset)
@@ -60,10 +62,10 @@ public class Collection_Recycler extends RecyclerView.Adapter<Collection_Recycle
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(viewHolder holder, int position) {
+    public void onBindViewHolder(final viewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        CollectionModel m = mDataset.get(position);
+        m = mDataset.get(position);
 
         //thumbnail
         //"http://lax102.fm/wp-content/uploads/2014/11/Marina-and-the-Diamonds-Froot-2014-1000x1000-Official.jpg"
@@ -93,10 +95,14 @@ public class Collection_Recycler extends RecyclerView.Adapter<Collection_Recycle
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Adapter","onClick");
+                Log.d("onCLick",String.valueOf(holder.getPosition()));
                 Intent i = new Intent(myActivity,ObjectsActivity.class);
+                CollectionModel nnM = mDataset.get(holder.getPosition());
+                i.putExtra("title",nnM.getTitle());
                 myActivity.startActivity(i);
+
             }
+
         });
 
     }

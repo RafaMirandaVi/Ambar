@@ -37,6 +37,8 @@ public class ObjectsActivity extends ActionBarActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     private Handler handler = new Handler(); //Os imported [SwipeLayout]
     Toolbar toolbar;
+    private CharSequence mTitle;
+    String dummy;
 
     @Override //[SwipeLayout]
     public void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,10 @@ public class ObjectsActivity extends ActionBarActivity {
         setContentView(R.layout.object_view_swipe); //[SwipeLayout]
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        SearchView search = (SearchView) findViewById(R.id.searchView);
-        search.setBackgroundColor(Color.parseColor("#000000"));
+
+        setTitle(getIntent().getStringExtra("title"));
+
+
         // Set an OnMenuItemClickListener to handle menu item clicks
         /*toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -152,6 +156,12 @@ public class ObjectsActivity extends ActionBarActivity {
 
         });
 
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        mTitle = title;
+        getSupportActionBar().setTitle(mTitle);
     }
 
     /*public boolean dispatchTouchEvent(MotionEvent ev){

@@ -72,36 +72,6 @@ public class MyActivity extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        searchView = (SearchView)findViewById(R.id.searchView); //Hay dos, ten cuidado
-        searchView.setBackgroundColor(Color.parseColor("#000000"));
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
-            private boolean extended = false;
-
-            @Override
-            public void onClick(View v) {
-                Log.d("setOnSearchClickListener","onClick");
-                //if(isRefreshing(2))
-                //mAdapter.getFilter().filter(stringSearch);
-                //Log.d("setOnSearchClickListener",stringSearch.toString());
-                }
-            });
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String arg0) {
-                Log.d("onQueryTextSubmit",arg0); //lml
-                fragment_pager.setQuery(arg0);
-                return true;
-            }
-
-            //Este no
-            @Override
-            public boolean onQueryTextChange(String arg0) {
-                return false;
-            }
-        });
-
                 // load slide menu items
         mTitle = mDrawerTitle = getTitle();
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
