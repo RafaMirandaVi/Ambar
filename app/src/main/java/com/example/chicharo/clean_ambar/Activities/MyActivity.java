@@ -2,18 +2,21 @@ package com.example.chicharo.clean_ambar.Activities;
 
 
 import com.example.chicharo.clean_ambar.Fragments.Fragment_Pager;
+import com.example.chicharo.clean_ambar.Fragments.Fragmento_Collection;
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.models.NavDrawerItem;
 import com.example.chicharo.clean_ambar.adapter.NavDrawerListAdapter;
 import com.example.chicharo.clean_ambar.util.SessionManagement;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +31,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.widget.SearchView;
 
 /**
  * RECUERDA QUE AÑADIMOS EL JAR ANDOROID SUPPORT V13 DE EXTRAS/SUPPORT/
@@ -38,6 +42,9 @@ public class MyActivity extends ActionBarActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
+
+    //instanciamos para hacer llegar el query por sus métodos
+    Fragment_Pager fragment_pager = new Fragment_Pager();
 
     // nav drawer title
     private CharSequence mDrawerTitle;
@@ -53,6 +60,7 @@ public class MyActivity extends ActionBarActivity {
     private NavDrawerListAdapter adapter;
 
     SessionManagement sessionM;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +71,37 @@ public class MyActivity extends ActionBarActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        searchView = (SearchView)findViewById(R.id.searchView); //Hay dos, ten cuidado
+        searchView.setBackgroundColor(Color.parseColor("#000000"));
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            private boolean extended = false;
+
+            @Override
+            public void onClick(View v) {
+                Log.d("setOnSearchClickListener","onClick");
+                //if(isRefreshing(2))
+                //mAdapter.getFilter().filter(stringSearch);
+                //Log.d("setOnSearchClickListener",stringSearch.toString());
+                }
+            });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String arg0) {
+                Log.d("onQueryTextSubmit",arg0); //lml
+                fragment_pager.setQuery(arg0);
+                return true;
+            }
+
+            //Este no
+            @Override
+            public boolean onQueryTextChange(String arg0) {
+                return false;
+            }
+        });
+
                 // load slide menu items
         mTitle = mDrawerTitle = getTitle();
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
@@ -172,6 +211,7 @@ public class MyActivity extends ActionBarActivity {
             mDrawerList.setSelection(position);
             setTitle(navMenuTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
+            //Log.d("fPager",String.valueOf(fragment.getView().getId()));
         } else {
             // error in creating fragment
             Log.e("MainActivity", "Error in creating fragment");

@@ -1,5 +1,6 @@
 package com.example.chicharo.clean_ambar.Activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.chicharo.clean_ambar.R;
@@ -42,19 +44,20 @@ public class ObjectsActivity extends ActionBarActivity {
         setContentView(R.layout.object_view_swipe); //[SwipeLayout]
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        SearchView search = (SearchView) findViewById(R.id.searchView);
+        search.setBackgroundColor(Color.parseColor("#000000"));
         // Set an OnMenuItemClickListener to handle menu item clicks
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        /*toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 // Handle the menu item
                 Log.d("onMenuItemClick Toolbar",String.valueOf(item));
                 return true;
             }
-        });
+        });*/
 
         // Inflate a menu to be displayed in the toolbar
-        toolbar.inflateMenu(R.menu.toolbar_back);
+        //toolbar.inflateMenu(R.menu.toolbar_back);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // AY TE AMO TE AMO
         getSupportActionBar().setHomeButtonEnabled(true);

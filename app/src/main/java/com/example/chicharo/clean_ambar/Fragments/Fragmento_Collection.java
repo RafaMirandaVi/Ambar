@@ -1,6 +1,8 @@
 package com.example.chicharo.clean_ambar.Fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,7 @@ import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -41,10 +44,10 @@ public class Fragmento_Collection extends Fragment{
     private ProgressDialog pDialog;
     LinearLayoutManager mLayoutManager;
     private ArrayList<CollectionModel> movieList = new ArrayList<CollectionModel>();
-    private Collection_Recycler mAdapter;
+    Collection_Recycler mAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private Handler handler = new Handler(); //Os imported [SwipeLayout]
-    GestureDetector gesturedetector;
+    Activity myActivity;
 
     // declare class member variables
     private GestureDetector mGestureDetector;
@@ -52,15 +55,15 @@ public class Fragmento_Collection extends Fragment{
     private boolean mIsScrolling = false;
     int y=0;
 
-
-    public static Fragmento_Collection newInstance(int position) {
+    //Fragmento_Collection fragmento_collection = new Fragmento_Collection();
+    /*public static Fragmento_Collection newInstance(int position) {
         Fragmento_Collection fragmentCercanos = new Fragmento_Collection();
         Bundle extraArguments = new Bundle();
         fragmentCercanos.setArguments(extraArguments);
         return fragmentCercanos;
-    }
+    }*/
 
-    @Override
+    //@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); //WTF?
@@ -68,30 +71,62 @@ public class Fragmento_Collection extends Fragment{
     }
 
     private static final String url = "http://api.androidhive.info/json/movies.json";
-
-    @Override
+    //@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.collection_view_swipe, container, false);
-
-        //pDialog = new ProgressDialog(getActivity());
+        myActivity =getActivity();
+        pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
-        //pDialog.setMessage("Loading...");
-        //pDialog.show();
+        pDialog.setMessage("Loading...");
+        pDialog.show();
 
         recList= (RecyclerView) v.findViewById(R.id.recycler_collection_swipe);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recList.setHasFixedSize(false);
 
+        SearchView searchView = (SearchView)getActivity().findViewById(R.id.searchView);
+        /*searchView.setOnSearchClickListener(new View.OnClickListener() {
+            private boolean extended = false;
+
+            @Override
+            public void onClick(View v) {
+                //Log.d("setOnSearchClickListener","onClick");
+                //if(isRefreshing(2))
+                //mAdapter.getFilter().filter(stringSearch);
+                //Log.d("setOnSearchClickListener",stringSearch.toString());
+           */
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String arg0) {
+                Log.d("onQueryTextSubmit",arg0); //lml
+                mAdapter.getFilter().filter(arg0);
+                y=0;
+                //fragment_pager.setQuery(arg0);
+                return true;
+            }
+
+            //Este no
+            @Override
+            public boolean onQueryTextChange(String arg0) {
+                if (arg0.equals("")){
+                    mAdapter.getFilter().filter(arg0);
+                }
+                return false;
+            }
+        });
+
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         recList.setLayoutManager(mLayoutManager);
-        mAdapter = new Collection_Recycler(getActivity(), movieList);
+        mAdapter = new Collection_Recycler(myActivity, movieList);
         recList.setAdapter(mAdapter);
-
+        Log.d("onCreatView",mAdapter.toString());
         // Creating volley request obj
         movieReq = fillMovie();
         AppController.getInstance().addToRequestQueue(movieReq);
+
         // Done with volley
 
         //MyGestureListener gestureListener = new MyGestureListener(getActivity());
@@ -108,7 +143,7 @@ public class Fragmento_Collection extends Fragment{
                         handler.postDelayed(this, 500);
                     }else{
                         // stop the animation after the data is fully loaded
-                        Log.d("isRefreshing","stopAmimation");
+                        //Log.d("isRefreshing","stopAmimation");
                         swipeRefreshLayout.setRefreshing(false);
                         // TODO : update your list with the new data
                     }
@@ -126,7 +161,9 @@ public class Fragmento_Collection extends Fragment{
                 isRefreshing(1);
                 // TODO : request data here
                 movieReq = fillMovie();
+                movieList.clear(); //Muy importante, si no está, se añade de nuevo la lista, si tenías 5 elementos, tendrás 10. HAY QUE TENER CUIDADO, VOLLEY ES ASÍNCRONO Y PODEMOS LIMPIAR ANTES DE 'ENVIAR' LA PRIMERA VEZ, supongo.
                 AppController.getInstance().addToRequestQueue(movieReq);
+                mAdapter.notifyDataSetChanged();
                 // our swipeRefreshLayout needs to be notified when the data is returned in order for it to stop the animation
                 handler.post(refreshing);
 
@@ -146,9 +183,15 @@ public class Fragmento_Collection extends Fragment{
             }
         });
         // Adding request to request queuea
-
         return v;
     }
+
+    //Le decimos al adapter que filtre de acuerdo al query
+    /*public void setQuery(String query){
+        Log.d("setQuery",mAdapter.toString());
+        mAdapter.getFilter().filter(query);
+
+    }*/
 
     public void onStop(){
         super.onStop();
@@ -223,7 +266,7 @@ public class Fragmento_Collection extends Fragment{
         if(a!=2) {
             if (a==0){
                 is=false;
-                Log.d("isRefreshing","False, 0");
+                //Log.d("isRefreshing","False, 0");
             }else{
                 is=true;
             }
