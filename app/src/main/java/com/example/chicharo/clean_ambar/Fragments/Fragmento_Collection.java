@@ -25,6 +25,7 @@ import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.adapter.Collection_Recycler;
 import com.example.chicharo.clean_ambar.app.AppController;
 import com.example.chicharo.clean_ambar.models.CollectionModel;
+import com.example.chicharo.clean_ambar.util.compositeOnQueryTextListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +38,7 @@ import java.util.ArrayList;
 
 public class Fragmento_Collection extends Fragment{
 
-    private static final String TAG = MyActivity.class.getSimpleName();
+    //private static final String TAG = MyActivity.class.getSimpleName();
 
     RecyclerView recList;
     JsonArrayRequest movieReq;
@@ -47,23 +48,27 @@ public class Fragmento_Collection extends Fragment{
     Collection_Recycler mAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private Handler handler = new Handler(); //Os imported [SwipeLayout]
-    Activity myActivity;
 
     // declare class member variables
-    private GestureDetector mGestureDetector;
-    private View.OnTouchListener mGestureListener;
-    private boolean mIsScrolling = false;
+    boolean active = true;
     int y=0;
+    SearchView searchView;
+    String edgarRulzz;
 
-    //Fragmento_Collection fragmento_collection = new Fragmento_Collection();
-    /*public static Fragmento_Collection newInstance(int position) {
-        Fragmento_Collection fragmentCercanos = new Fragmento_Collection();
+    public static Fragmento_Collection newInstance(int position) {
+
+        Fragmento_Collection home = new Fragmento_Collection(); // CUIDADO CON EL ACTIVITY MAIN, PUEDE ENTRAR EN CONFLICTO POR EL NOMBRE
         Bundle extraArguments = new Bundle();
-        fragmentCercanos.setArguments(extraArguments);
-        return fragmentCercanos;
-    }*/
+        //extraArguments.putInt(NavigationDrawerFragment.ARG_SECTION_NUMBER, position);
+        home.setArguments(extraArguments);
+        return home;
+    }
 
-    //@Override
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); //WTF?
@@ -71,13 +76,12 @@ public class Fragmento_Collection extends Fragment{
     }
 
     private static final String url = "http://api.androidhive.info/json/movies.json";
-    //@Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.collection_view_swipe, container, false);
-        myActivity =getActivity();
         pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage(getActivity().getApplicationContext().getString(R.string.loading));
         pDialog.show();
 
         recList= (RecyclerView) v.findViewById(R.id.recycler_collection_swipe);
@@ -85,42 +89,34 @@ public class Fragmento_Collection extends Fragment{
         // in content do not change the layout size of the RecyclerView
         recList.setHasFixedSize(false);
 
-        SearchView searchView = (SearchView)getActivity().findViewById(R.id.searchView);
-        /*searchView.setOnSearchClickListener(new View.OnClickListener() {
-            private boolean extended = false;
+        //searchView = (SearchView)getActivity().findViewById(R.id.searchView);
+        //Collection_Objects_Fragment collection_objects_fragment = new Collection_Objects_Fragment();
+        //collection_objects_fragment.setSearchView(searchView);
+        searchView = (SearchView)getActivity().findViewById(R.id.searchView);
 
+        SearchView.OnQueryTextListener listener =new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View v) {
-                //Log.d("setOnSearchClickListener","onClick");
-                //if(isRefreshing(2))
-                //mAdapter.getFilter().filter(stringSearch);
-                //Log.d("setOnSearchClickListener",stringSearch.toString());
-           */
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String arg0) {
-                Log.d("onQueryTextSubmit",arg0); //lml
-                mAdapter.getFilter().filter(arg0);
-                y=0;
-                //fragment_pager.setQuery(arg0);
-                return true;
-            }
-
-            //Este no
-            @Override
-            public boolean onQueryTextChange(String arg0) {
-                if (arg0.equals("")){
-                    mAdapter.getFilter().filter(arg0);
-                }
+            public boolean onQueryTextSubmit(String query) {
                 return false;
             }
-        });
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(true) { //active
+                    Log.d("onQueryTextChange","Listener 0");
+                    mAdapter.getFilter().filter(newText);
+                    y=0;
+                }
+                return true;
+            }
+        };
+        SearchView.OnQueryTextListener defListener = new compositeOnQueryTextListener(listener);
+        searchView.setOnQueryTextListener(defListener);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         recList.setLayoutManager(mLayoutManager);
-        mAdapter = new Collection_Recycler(myActivity, movieList);
+        mAdapter = new Collection_Recycler(getActivity(), movieList);
         recList.setAdapter(mAdapter);
         Log.d("onCreatView",mAdapter.toString());
         // Creating volley request obj
@@ -243,7 +239,7 @@ public class Fragmento_Collection extends Fragment{
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                VolleyLog.d("kk", "Error: " + error.getMessage()); //TAG
                 hidePDialog();
 
             }

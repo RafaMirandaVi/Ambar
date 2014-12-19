@@ -44,7 +44,7 @@ public class MyActivity extends ActionBarActivity {
     private ActionBarDrawerToggle mDrawerToggle;
 
     //instanciamos para hacer llegar el query por sus métodos
-    Fragment_Pager fragment_pager = new Fragment_Pager();
+    //Fragment_Pager fragment_pager = new Fragment_Pager();
 
     // nav drawer title
     private CharSequence mDrawerTitle;
@@ -63,7 +63,7 @@ public class MyActivity extends ActionBarActivity {
     SearchView searchView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sessionM = new SessionManagement(getApplicationContext());
         sessionM.checkLogin(); //Solo hace el redireccionamiento

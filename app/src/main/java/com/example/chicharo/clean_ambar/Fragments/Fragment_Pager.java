@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.chicharo.clean_ambar.adapter.PageAdapter;
 import com.example.chicharo.clean_ambar.R;
+import com.example.chicharo.clean_ambar.models.Collection_Object;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +20,8 @@ import java.util.List;
 public class Fragment_Pager extends android.support.v4.app.Fragment {
     private int currentFragment = 0;
 
-    Collection_Objects_Fragment collection_objects_fragment = new Collection_Objects_Fragment();
-    Fragmento_Collection fragmento_collection = new Fragmento_Collection();
+    //public Fragment_Pager() {    }
 
-    public Fragment_Pager() {    }
 
     public static Fragment_Pager newInstance(int position) {
 
@@ -42,11 +41,11 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
 
         listaFragments = new ArrayList<android.support.v4.app.Fragment>();
 
-        listaFragments.add(fragmento_collection);
-        listaFragments.add(collection_objects_fragment);
+        listaFragments.add(Fragmento_Collection.newInstance(0));
+        listaFragments.add(Collection_Objects_Fragment.newInstance(1));
 
         // Creamos nuestro Adapter
-        mPagerAdapter = new PageAdapter(getFragmentManager(), listaFragments);
+        mPagerAdapter = new PageAdapter(getFragmentManager(), listaFragments,getActivity().getApplicationContext());
 
         // Initialize the ViewPager and set an adapter
         ViewPager pager = (ViewPager) v.findViewById(R.id.pager);
@@ -55,7 +54,7 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
         // Bind the tabs to the ViewPager
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
         tabs.setIndicatorColor(getResources().getColor(R.color.accent));
-        tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        /*tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 //Log.d("tabs","onPageScrolled: "+String.valueOf(position));
@@ -65,13 +64,20 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
             public void onPageSelected(int position) {
                 Log.d("tabs","onPageSelected "+String.valueOf(position)); //sos groso sabelo
                 currentFragment = position;
+                if(position == 0) {
+                    fragmento_collection.setActive(true);
+                    collection_objects_fragment.setActive(false);
+                }else{
+                    collection_objects_fragment.setActive(true);
+                    fragmento_collection.setActive(false);
+                }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
                 Log.d("tabs","onPageScrollStateChanged "+String.valueOf(state));
             }
-        });
+        });*/
 
         tabs.setShouldExpand(true);
 

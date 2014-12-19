@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ambar</string>
+    <string name="action_settings">Configuración</string>
+    <string name="hello_world">Hola Mundo</string>
+    <string name="drawer_open">Slider menu abierto</string>
+    <string name="drawer_close">Slider Menu cerrado</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >Inicio</item>
+        <item >Encuentra Personas</item>
+        <item >Fotos</item>
+        <item >Cerrar Sesión</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_people</item>
+        <item>@drawable/ic_communities</item>
+        <item>@drawable/ic_pages</item>
+    </array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">ícono ítem</string>
+
+    <!--Menu-->
+    <string name="back">atrás</string>
+
+    <!-- Home View -->
+    <string name="Home_View">Vista Inicio</string>
+
+    <!--login_activity-->
+    <string name="login">INICIAR SESION</string>
+    <string name="member_login">SESION DE MIEMBRO</string>
+    <string name="wrong_user">Usuario/contraseña erróneo</string>
+    <string name="empty_user">Ingresar usuario y contraseña</string>
+
+    <!--Page adapter-->
+    <string name="collection">Colección</string>
+    <string name="objects">objetos</string>
+
+    <!--Fragmento_Collection-->
+    <string name="loading">Cargando...</string>
+
+
+</resources>

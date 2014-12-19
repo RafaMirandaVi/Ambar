@@ -6,13 +6,16 @@ package com.example.chicharo.clean_ambar.Fragments;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.adapter.Collection_Objects_Recycler;
 import com.example.chicharo.clean_ambar.models.Collection_Object;
+import com.example.chicharo.clean_ambar.util.compositeOnQueryTextListener;
 
 import java.util.ArrayList;
 
@@ -23,6 +26,13 @@ public class Collection_Objects_Fragment extends android.support.v4.app.Fragment
     private Collection_Objects_Recycler adapter;
     public ArrayList<Collection_Object> models = new ArrayList<Collection_Object>();
     private LinearLayoutManager mLayoutManager;
+    boolean active=false;
+    int y=0;
+    SearchView searchView;
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public static Collection_Objects_Fragment newInstance(int position) {
 
@@ -33,12 +43,12 @@ public class Collection_Objects_Fragment extends android.support.v4.app.Fragment
         return home;
     }
 
-
+    @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
     }
-
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.object_view,container,false);
 
@@ -63,6 +73,34 @@ public class Collection_Objects_Fragment extends android.support.v4.app.Fragment
 
         adapter = new Collection_Objects_Recycler(getActivity(),models);
         recList.setAdapter(adapter);
+
+        searchView = (SearchView)getActivity().findViewById(R.id.searchView);
+        SearchView.OnQueryTextListener listener =new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(true) { //active
+                    Log.d("onQueryTextChange","Listener 1");
+                    adapter.getFilter().filter(newText);
+                    y=0;
+                }
+                return true;
+            }
+        };
+        SearchView.OnQueryTextListener defListener = new compositeOnQueryTextListener(listener);
+        searchView.setOnQueryTextListener(defListener);
+
+        recList.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                y=y+dy;
+            }
+        });
 
         return v;
     }
