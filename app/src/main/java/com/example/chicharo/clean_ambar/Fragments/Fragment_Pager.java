@@ -12,6 +12,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.example.chicharo.clean_ambar.adapter.PageAdapter;
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.models.Collection_Object;
+import com.example.chicharo.clean_ambar.util.SlidingTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +53,7 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
         pager.setAdapter(mPagerAdapter);
 
         // Bind the tabs to the ViewPager
-        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
-        tabs.setIndicatorColor(getResources().getColor(R.color.accent));
+        SlidingTabLayout tabs = (SlidingTabLayout) v.findViewById(R.id.tabs);
         /*tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -79,10 +79,10 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
             }
         });*/
 
-        tabs.setShouldExpand(true);
+        //tabs.setShouldExpand(true);
 
         // tabs.setTextColorResource(R.color.white);
-        tabs.setDividerColor(getResources().getColor(R.color.accent));
+        //tabs.setDividerColor(getResources().getColor(R.color.accent));
         tabs.setViewPager(pager);
 
         return  v;

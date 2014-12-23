@@ -41,7 +41,7 @@
 
     <!--Page adapter-->
     <string name="collection">Collection</string>
-    <string name="objects">objects</string>
+    <string name="objects">Objects</string>
 
     <!--Fragmento_Collection-->
     <string name="loading">Loading..</string>
