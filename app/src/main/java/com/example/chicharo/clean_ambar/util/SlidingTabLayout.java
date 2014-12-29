@@ -21,11 +21,13 @@ import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -65,8 +67,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
 
     private static final int TITLE_OFFSET_DIPS = 24;
-    private static final int TAB_VIEW_PADDING_DIPS = 30; //Lara was here
-    private static final int TAB_VIEW_TEXT_SIZE_SP = 12;
+    private static final int TAB_VIEW_PADDING_DIPS = 18; //Lara was here
+    private static final int TAB_VIEW_TEXT_SIZE_SP = 14;
 
     private int mTitleOffset;
 
@@ -169,6 +171,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
      */
     protected TextView createDefaultTabView(Context context) {
         TextView textView = new TextView(context);
+        textView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)); //
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
         textView.setTypeface(Typeface.DEFAULT_BOLD);
@@ -177,7 +180,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             // If we're running on Honeycomb or newer, then we can use the Theme's
             // selectableItemBackground to ensure that the View has a pressed state
             TypedValue outValue = new TypedValue();
-            getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
+            getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, //Ripple effect
                     outValue, true);
             textView.setBackgroundResource(outValue.resourceId);
         }
@@ -210,6 +213,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if (tabView == null) {
                 tabView = createDefaultTabView(getContext());
+                //tabView.setMinimumWidth(getResources().getDisplayMetrics().widthPixels/adapter.getCount());
+                //Log.d("mTabStrip","width: "+mTabStrip.getWidth());
+                //getResources().getDisplayMetrics().widthPixels
             }
 
             if (tabTitleView == null && TextView.class.isInstance(tabView)) {
@@ -220,6 +226,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             tabView.setOnClickListener(tabClickListener);
 
             mTabStrip.addView(tabView);
+            Log.d("mTabStrip","width2: "+mTabStrip.getWidth());
         }
     }
 

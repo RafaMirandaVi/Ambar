@@ -83,10 +83,13 @@ public class Collection_Objects_Fragment extends android.support.v4.app.Fragment
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(true) { //active
+                Log.d("Collection_Objects","Active: "+active);
+                if(active) { //active
                     Log.d("onQueryTextChange","Listener 1");
                     adapter.getFilter().filter(newText);
                     y=0;
+                } else if(newText.equals("")) {
+                    adapter.getFilter().filter(newText);
                 }
                 return true;
             }

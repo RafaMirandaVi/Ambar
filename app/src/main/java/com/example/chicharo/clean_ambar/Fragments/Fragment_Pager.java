@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.astuetz.PagerSlidingTabStrip;
+//import com.astuetz.PagerSlidingTabStrip;
 import com.example.chicharo.clean_ambar.adapter.PageAdapter;
 import com.example.chicharo.clean_ambar.R;
 import com.example.chicharo.clean_ambar.models.Collection_Object;
@@ -41,9 +41,11 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
         View v = inflater.inflate(R.layout.pager_fragment, container, false);
 
         listaFragments = new ArrayList<android.support.v4.app.Fragment>();
+        final Fragmento_Collection fragmento_collection = new Fragmento_Collection();
+        final Collection_Objects_Fragment collection_objects_fragment = new Collection_Objects_Fragment();
 
-        listaFragments.add(Fragmento_Collection.newInstance(0));
-        listaFragments.add(Collection_Objects_Fragment.newInstance(1));
+        listaFragments.add(fragmento_collection);
+        listaFragments.add(collection_objects_fragment);
 
         // Creamos nuestro Adapter
         mPagerAdapter = new PageAdapter(getFragmentManager(), listaFragments,getActivity().getApplicationContext());
@@ -54,7 +56,7 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
 
         // Bind the tabs to the ViewPager
         SlidingTabLayout tabs = (SlidingTabLayout) v.findViewById(R.id.tabs);
-        /*tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 //Log.d("tabs","onPageScrolled: "+String.valueOf(position));
@@ -75,9 +77,9 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.d("tabs","onPageScrollStateChanged "+String.valueOf(state));
+                //Log.d("tabs","onPageScrollStateChanged "+String.valueOf(state));
             }
-        });*/
+        });
 
         //tabs.setShouldExpand(true);
 

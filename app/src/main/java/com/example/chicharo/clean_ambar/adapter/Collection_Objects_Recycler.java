@@ -142,7 +142,6 @@ public class Collection_Objects_Recycler extends RecyclerView.Adapter<Collection
                     }
                 }*/
                 for(int i=0;i<oDataset.size();i++){
-                    Log.d("Collection_Recycler", "for "+String.valueOf(i));
                     Collection_Object nM = new Collection_Object();
                     nM = oDataset.get(i);
                     if (nM.getNombre().toUpperCase().startsWith(constraint.toString().toUpperCase())) {
@@ -158,7 +157,6 @@ public class Collection_Objects_Recycler extends RecyclerView.Adapter<Collection
 
         @Override
         protected void publishResults(CharSequence constraint,FilterResults results) {
-            Log.d("publishResults","just in");
             // Now we have to inform the adapter about the new list filtered
             if (constraint == null || constraint.length() == 0) {
                 //Log.d("length 0",String.valueOf(results.count));//Toast.makeText(myActivity, "no results",Toast.LENGTH_LONG).show();

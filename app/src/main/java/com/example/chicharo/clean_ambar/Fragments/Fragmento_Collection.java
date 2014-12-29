@@ -102,10 +102,11 @@ public class Fragmento_Collection extends Fragment{
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(true) { //active
-                    Log.d("onQueryTextChange","Listener 0");
+                if(active) { //active
                     mAdapter.getFilter().filter(newText);
                     y=0;
+                } else if(newText.equals("")){
+                    mAdapter.getFilter().filter(newText);
                 }
                 return true;
             }

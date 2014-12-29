@@ -8,7 +8,7 @@
     ><!-- El tema puso el fondo negro :0-->
     <com.example.chicharo.clean_ambar.util.SlidingTabLayout
         android:id="@+id/tabs"
-        android:background="#655321"
+        android:background="@color/primary"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         />
