@@ -1,8 +1,10 @@
 package com.example.chicharo.clean_ambar.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.chicharo.clean_ambar.Activities.LoginActivity;
 
@@ -26,6 +28,8 @@ public class SessionManagement {
 
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
+
+    //private static final String IS_NOT_LOGIN = "IsNOTLoggedIn";
 
     // User name (make variable public to access from outside)
     public static final String KEY_NAME = "name";
@@ -80,13 +84,13 @@ public class SessionManagement {
     public void checkLogin() {
         // Check login status
         if (!this.isLoggedIn()) {
+            //Mejor solucionar con Flag si es que existe
             // user is not logged in redirect him to Login Activity
             Intent i = new Intent(_context, LoginActivity.class);
-            // Closing all the Activities
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
             // Add new Flag to start new Activity
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            // Closing all the Activities
+            //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
             // Staring Login Activity
             _context.startActivity(i);
@@ -99,15 +103,18 @@ public class SessionManagement {
     public void logoutUser(){
         // Clearing all data from Shared Preferences
         editor.clear();
+        //editor.putBoolean(IS_LOGIN, false);
         editor.commit();
 
         // After logout redirect user to Loing Activity
         Intent i = new Intent(_context, LoginActivity.class);
-        // Closing all the Activities
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         // Add new Flag to start new Activity
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        // Closing all the Activities
+        //FLAG_ACTIVITY_CLEAR_TASK
+        //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         // Staring Login Activity
         _context.startActivity(i);
@@ -117,6 +124,7 @@ public class SessionManagement {
      * **/
     // Get Login State
     public boolean isLoggedIn(){
+        Log.d("SessionManagement","IsLoggedIn: "+String.valueOf(pref.getBoolean(IS_LOGIN,false)));
         return pref.getBoolean(IS_LOGIN, false);
     }
 }

@@ -66,7 +66,10 @@ public class MyActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sessionM = new SessionManagement(getApplicationContext());
-        sessionM.checkLogin(); //Solo hace el redireccionamiento
+        sessionM.checkLogin();
+        if(!sessionM.isLoggedIn()){ //Se hace desde aquí por motivos visuales
+            finish();
+        }
         setContentView(R.layout.main_activity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -131,6 +134,12 @@ public class MyActivity extends ActionBarActivity {
             displayView(0);
         }
 
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        Log.d("MyActivityCycle","onDestroy");
     }
 
     /**

@@ -28,7 +28,6 @@ public class LoginActivity extends Activity {
         sessionM = new SessionManagement(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        Log.d("LOGIN","onCreate");
 
         memberLogin = (TextView)findViewById(R.id.memberLogin);
         memberLogin.setText(R.string.member_login);
@@ -53,7 +52,6 @@ public class LoginActivity extends Activity {
                         // For testing i am stroing name, email as follow
                         // Use user real data
                         sessionM.createLoginSession(nameTxt,passTxt);
-                        Log.d("LOGIN","Session created");
 
                         Intent intent = new Intent(getApplicationContext(),MyActivity.class);
                         startActivity(intent);
