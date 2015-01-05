@@ -7,13 +7,16 @@
     app:popupTheme="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?attr/actionBarSize"
-    android:background="?attr/colorPrimary">
+    android:background="?attr/colorPrimary"
+    android:padding="0dp"
+    android:gravity="bottom"
+    >
+    <!--android:minHeight="?attr/actionBarSize"-->
+    <!--app:popupTheme="@style/AppTheme"-->
     <SearchView
         android:id="@+id/searchView"
         android:layout_gravity="end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text"
         />
 </android.support.v7.widget.Toolbar>

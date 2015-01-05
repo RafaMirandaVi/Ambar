@@ -28,10 +28,9 @@ public class LoginActivity extends Activity {
         sessionM = new SessionManagement(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        Log.d("LOGIN","onCreate");
 
         memberLogin = (TextView)findViewById(R.id.memberLogin);
-        memberLogin.setText("MEMBER LOGIN");
+        memberLogin.setText(R.string.member_login);
 
         name = (EditText)findViewById(R.id.LoginPersonText);
         pass = (EditText)findViewById(R.id.LoginPassText);
@@ -53,7 +52,6 @@ public class LoginActivity extends Activity {
                         // For testing i am stroing name, email as follow
                         // Use user real data
                         sessionM.createLoginSession(nameTxt,passTxt);
-                        Log.d("LOGIN","Session created");
 
                         Intent intent = new Intent(getApplicationContext(),MyActivity.class);
                         startActivity(intent);
@@ -61,13 +59,13 @@ public class LoginActivity extends Activity {
 
                     }else{
                         // username / password doesn't match
-                        Toast.makeText(getApplicationContext(), "Wrong usr/pass", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.wrong_user, Toast.LENGTH_LONG).show();
 
                     }
                 }else{
                     // user didn't entered username or password
                     // Show alert asking him to enter the details
-                    Toast.makeText(getApplicationContext(), "Enter usr and pass", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.empty_user, Toast.LENGTH_LONG).show();
                 }
 
 

@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.astuetz.PagerSlidingTabStrip;
+//import com.astuetz.PagerSlidingTabStrip;
 import com.example.chicharo.clean_ambar.adapter.PageAdapter;
 import com.example.chicharo.clean_ambar.R;
+import com.example.chicharo.clean_ambar.models.Collection_Object;
+import com.example.chicharo.clean_ambar.util.SlidingTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +21,8 @@ import java.util.List;
 public class Fragment_Pager extends android.support.v4.app.Fragment {
     private int currentFragment = 0;
 
-    Collection_Objects_Fragment collection_objects_fragment = new Collection_Objects_Fragment();
-    Fragmento_Collection fragmento_collection = new Fragmento_Collection();
+    //public Fragment_Pager() {    }
 
-    public Fragment_Pager() {    }
 
     public static Fragment_Pager newInstance(int position) {
 
@@ -41,20 +41,21 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
         View v = inflater.inflate(R.layout.pager_fragment, container, false);
 
         listaFragments = new ArrayList<android.support.v4.app.Fragment>();
+        final Fragmento_Collection fragmento_collection = new Fragmento_Collection();
+        final Collection_Objects_Fragment collection_objects_fragment = new Collection_Objects_Fragment();
 
         listaFragments.add(fragmento_collection);
         listaFragments.add(collection_objects_fragment);
 
         // Creamos nuestro Adapter
-        mPagerAdapter = new PageAdapter(getFragmentManager(), listaFragments);
+        mPagerAdapter = new PageAdapter(getFragmentManager(), listaFragments,getActivity().getApplicationContext());
 
         // Initialize the ViewPager and set an adapter
         ViewPager pager = (ViewPager) v.findViewById(R.id.pager);
         pager.setAdapter(mPagerAdapter);
 
         // Bind the tabs to the ViewPager
-        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
-        tabs.setIndicatorColor(getResources().getColor(R.color.accent));
+        SlidingTabLayout tabs = (SlidingTabLayout) v.findViewById(R.id.tabs);
         tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -65,18 +66,25 @@ public class Fragment_Pager extends android.support.v4.app.Fragment {
             public void onPageSelected(int position) {
                 Log.d("tabs","onPageSelected "+String.valueOf(position)); //sos groso sabelo
                 currentFragment = position;
+                if(position == 0) {
+                    fragmento_collection.setActive(true);
+                    collection_objects_fragment.setActive(false);
+                }else{
+                    collection_objects_fragment.setActive(true);
+                    fragmento_collection.setActive(false);
+                }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.d("tabs","onPageScrollStateChanged "+String.valueOf(state));
+                //Log.d("tabs","onPageScrollStateChanged "+String.valueOf(state));
             }
         });
 
-        tabs.setShouldExpand(true);
+        //tabs.setShouldExpand(true);
 
         // tabs.setTextColorResource(R.color.white);
-        tabs.setDividerColor(getResources().getColor(R.color.accent));
+        //tabs.setDividerColor(getResources().getColor(R.color.accent));
         tabs.setViewPager(pager);
 
         return  v;

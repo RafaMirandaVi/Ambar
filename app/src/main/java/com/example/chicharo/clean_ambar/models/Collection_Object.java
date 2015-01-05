@@ -9,6 +9,7 @@ public class Collection_Object {
     private int temperatura;
     private String thumbnail;
 
+    public Collection_Object(){}
 
     public Collection_Object(String nombre, int humedad, int temperatura, String thumbnail) {
         this.nombre = nombre;

@@ -188,7 +188,6 @@ public class Collection_Recycler extends RecyclerView.Adapter<Collection_Recycle
                 handler.postDelayed(mMyRunnable, 100);
                 }*/
                 for(int i=0;i<oDataset.size();i++){
-                    Log.d("Collection_Recycler", "for "+String.valueOf(i));
                     CollectionModel nM = new CollectionModel();
                     nM = oDataset.get(i);
                     if (nM.getTitle().toUpperCase().startsWith(constraint.toString().toUpperCase())) {

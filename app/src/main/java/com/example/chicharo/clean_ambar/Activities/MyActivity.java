@@ -44,7 +44,7 @@ public class MyActivity extends ActionBarActivity {
     private ActionBarDrawerToggle mDrawerToggle;
 
     //instanciamos para hacer llegar el query por sus métodos
-    Fragment_Pager fragment_pager = new Fragment_Pager();
+    //Fragment_Pager fragment_pager = new Fragment_Pager();
 
     // nav drawer title
     private CharSequence mDrawerTitle;
@@ -61,16 +61,19 @@ public class MyActivity extends ActionBarActivity {
 
     SessionManagement sessionM;
     SearchView searchView;
-
+    String UselessVar8;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sessionM = new SessionManagement(getApplicationContext());
-        sessionM.checkLogin(); //Solo hace el redireccionamiento
+        sessionM.checkLogin();
+        if(!sessionM.isLoggedIn()){ //Se hace desde aquí por motivos visuales
+            finish();
+        }
         setContentView(R.layout.main_activity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
                 // load slide menu items
         mTitle = mDrawerTitle = getTitle();
@@ -110,7 +113,8 @@ public class MyActivity extends ActionBarActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true); // AY TE AMO TE AMO
         //getSupportActionBar().setHomeButtonEnabled(true);
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);/* {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        /* {
             public void onDrawerClosed(View view) {
                 getSupportActionBar().setTitle(mTitle);
                 // calling onPrepareOptionsMenu() to show action bar icons
@@ -130,6 +134,12 @@ public class MyActivity extends ActionBarActivity {
             displayView(0);
         }
 
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        Log.d("MyActivityCycle","onDestroy");
     }
 
     /**
@@ -224,7 +234,7 @@ public class MyActivity extends ActionBarActivity {
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        getSupportActionBar().setTitle(mTitle);
+        //getSupportActionBar().setTitle(mTitle);
     }
 
     @Override
